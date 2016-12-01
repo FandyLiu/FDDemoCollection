@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDCollectionSheetView.h"
 
 @class FDPhotoSheetView;
 
 // 预留协议
-@protocol FDPhotoSheetViewDelegate <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@protocol FDPhotoSheetViewDelegate <FDCollectionSheetViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 
 @end
@@ -19,8 +20,9 @@
 @interface FDPhotoSheetView : UIView
 
 
-@property (nonatomic, weak) id<FDPhotoSheetViewDelegate> delegate;
+@property (nonatomic, weak) UIViewController<FDPhotoSheetViewDelegate>* delegate;
 
 + (void)showSheetViewWithDelegate:(UIViewController<FDPhotoSheetViewDelegate> *)controller;
+
 
 @end

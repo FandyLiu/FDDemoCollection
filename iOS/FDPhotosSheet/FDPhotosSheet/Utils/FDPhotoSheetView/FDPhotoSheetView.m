@@ -13,10 +13,13 @@
 #define FDScreenScale [UIScreen mainScreen].scale
 
 
+
 #define SheetViewH 200
 
 
 #import "FDPhotoSheetView.h"
+
+
 
 @interface FDPhotoSheetView()
 
@@ -115,8 +118,10 @@
             UIViewController *vc = (UIViewController *)(self.delegate);
             [vc presentViewController:imagePicker animated:YES completion:nil];
         }
+            break;
         case 2:
-            
+            [self dismiss];
+            [FDCollectionSheetView showSheetViewWithDelegate:self.delegate];
             break;
             
         default:

@@ -19,6 +19,9 @@
 		D76F1E621DEE74DA003C275E /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E601DEE74DA003C275E /* SelectViewController.m */; };
 		D76F1E651DEE78C0003C275E /* FDImageArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E641DEE78C0003C275E /* FDImageArchiver.m */; };
 		D76F1E6B1DEEBFB2003C275E /* FDPhotoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E6A1DEEBFB2003C275E /* FDPhotoFlowLayout.m */; };
+		D76F1E6E1DEECB6D003C275E /* FDCollectionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E6D1DEECB6D003C275E /* FDCollectionSheetView.m */; };
+		D76F1E711DEECD90003C275E /* FDPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E701DEECD90003C275E /* FDPhotoCollectionViewCell.m */; };
+		D76F1E741DEEE64A003C275E /* FDCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D76F1E731DEEE64A003C275E /* FDCollectionFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,12 @@
 		D76F1E641DEE78C0003C275E /* FDImageArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDImageArchiver.m; sourceTree = "<group>"; };
 		D76F1E691DEEBFB2003C275E /* FDPhotoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoFlowLayout.h; sourceTree = "<group>"; };
 		D76F1E6A1DEEBFB2003C275E /* FDPhotoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoFlowLayout.m; sourceTree = "<group>"; };
+		D76F1E6C1DEECB6D003C275E /* FDCollectionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCollectionSheetView.h; sourceTree = "<group>"; };
+		D76F1E6D1DEECB6D003C275E /* FDCollectionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCollectionSheetView.m; sourceTree = "<group>"; };
+		D76F1E6F1DEECD90003C275E /* FDPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		D76F1E701DEECD90003C275E /* FDPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		D76F1E721DEEE64A003C275E /* FDCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCollectionFooterView.h; sourceTree = "<group>"; };
+		D76F1E731DEEE64A003C275E /* FDCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCollectionFooterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +180,9 @@
 			children = (
 				D76F1E561DEE7469003C275E /* FDPhotoSheetView.h */,
 				D76F1E571DEE7469003C275E /* FDPhotoSheetView.m */,
-				D76F1E691DEEBFB2003C275E /* FDPhotoFlowLayout.h */,
-				D76F1E6A1DEEBFB2003C275E /* FDPhotoFlowLayout.m */,
+				D76F1E6C1DEECB6D003C275E /* FDCollectionSheetView.h */,
+				D76F1E6D1DEECB6D003C275E /* FDCollectionSheetView.m */,
+				D77ABBD21DEFD45E00663342 /* CollectionView */,
 			);
 			path = FDPhotoSheetView;
 			sourceTree = "<group>";
@@ -184,6 +194,19 @@
 				D76F1E5A1DEE7469003C275E /* UIButton+FDAdd.m */,
 			);
 			path = "UIButton+FDCategories";
+			sourceTree = "<group>";
+		};
+		D77ABBD21DEFD45E00663342 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				D76F1E691DEEBFB2003C275E /* FDPhotoFlowLayout.h */,
+				D76F1E6A1DEEBFB2003C275E /* FDPhotoFlowLayout.m */,
+				D76F1E721DEEE64A003C275E /* FDCollectionFooterView.h */,
+				D76F1E731DEEE64A003C275E /* FDCollectionFooterView.m */,
+				D76F1E6F1DEECD90003C275E /* FDPhotoCollectionViewCell.h */,
+				D76F1E701DEECD90003C275E /* FDPhotoCollectionViewCell.m */,
+			);
+			name = CollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,8 +349,11 @@
 				D76F1E621DEE74DA003C275E /* SelectViewController.m in Sources */,
 				D76F1E261DEE6E17003C275E /* AppDelegate.m in Sources */,
 				D76F1E651DEE78C0003C275E /* FDImageArchiver.m in Sources */,
+				D76F1E741DEEE64A003C275E /* FDCollectionFooterView.m in Sources */,
 				D76F1E5B1DEE7469003C275E /* FDPhotoSheetView.m in Sources */,
+				D76F1E6E1DEECB6D003C275E /* FDCollectionSheetView.m in Sources */,
 				D76F1E231DEE6E17003C275E /* main.m in Sources */,
+				D76F1E711DEECD90003C275E /* FDPhotoCollectionViewCell.m in Sources */,
 				D76F1E611DEE74DA003C275E /* MainViewController.m in Sources */,
 				D76F1E5C1DEE7469003C275E /* UIButton+FDAdd.m in Sources */,
 			);
