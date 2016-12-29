@@ -22,30 +22,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qXm-KB-WDj">
-                                <rect key="frame" x="166.5" y="50" width="42" height="110.5"/>
+                                <rect key="frame" x="146" y="50" width="84.5" height="127"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xa-ZT-dxL">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xa-ZT-dxL">
+                                        <rect key="frame" x="0.0" y="0.0" width="84.5" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-fn-bT2">
-                                        <rect key="frame" x="0.0" y="20.5" width="42" height="30"/>
+                                        <rect key="frame" x="0.0" y="37" width="84.5" height="30"/>
                                         <state key="normal" title="开始"/>
                                         <connections>
                                             <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TbY-fD-ETV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcB-uU-c4S">
-                                        <rect key="frame" x="0.0" y="50.5" width="42" height="30"/>
+                                        <rect key="frame" x="0.0" y="67" width="84.5" height="30"/>
                                         <state key="normal" title="暂停"/>
                                         <connections>
                                             <action selector="pauseTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RsV-1b-jY0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rcg-di-nuD">
-                                        <rect key="frame" x="0.0" y="80.5" width="42" height="30"/>
+                                        <rect key="frame" x="0.0" y="97" width="84.5" height="30"/>
                                         <state key="normal" title="重置"/>
                                         <connections>
                                             <action selector="resetTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sEA-r9-8sk"/>

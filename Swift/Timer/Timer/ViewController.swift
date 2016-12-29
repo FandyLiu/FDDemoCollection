@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timeLabel.text = String(counter)
+        timeLabel.text = String(format: "%05.2f", counter)
         pauseButton.isEnabled = false
         
     }
@@ -45,8 +45,7 @@ class ViewController: UIViewController {
         pauseButton.isEnabled = false
         timer.invalidate()
         isPlaying = false
-        counter = 0.0
-        timeLabel.text = String(counter)
+        timeLabel.text = String(format: "%05.2f", counter)
     }
     
     @IBAction func resetTimer(_ sender: UIButton) {
@@ -56,7 +55,7 @@ class ViewController: UIViewController {
         timer.invalidate()
         isPlaying = false
         counter = 0.0
-        timeLabel.text = String(counter)
+        timeLabel.text = String(format: "%05.2f", counter)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,8 +64,8 @@ class ViewController: UIViewController {
     }
     
     func updateTimer() -> Void {
-        counter = counter + 0.1
-        timeLabel.text = String(format: "%.1f", counter)
+        counter = counter + 0.01
+        timeLabel.text = String(format: "%05.2f", counter)
     }
 
 
