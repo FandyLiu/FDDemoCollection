@@ -20,8 +20,6 @@ static NSString *const reuseID = @"reuseID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseID];
     
 }
@@ -54,14 +52,15 @@ static NSString *const reuseID = @"reuseID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%zd",indexPath.row];
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.startRect = [tableView rectForRowAtIndexPath:indexPath];
     FDDetailViewController *detailVC = [[FDDetailViewController alloc] init];
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 #pragma mark - UINavigationControllerDelegate

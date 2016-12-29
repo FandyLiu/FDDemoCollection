@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "FDTableViewController.h"
+#import "FDMainTabBarController.h"
+
 
 @interface AppDelegate ()
 
@@ -19,13 +20,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    FDTableViewController *mVC = [[FDTableViewController alloc] init];
-    UINavigationController *mNav = [[UINavigationController alloc] initWithRootViewController:mVC];
-    self.window.rootViewController = mNav;
+    self.window.backgroundColor = [UIColor yellowColor];
+    self.window.rootViewController = [[FDMainTabBarController alloc] init];
     [self.window makeKeyAndVisible];
-    
-    
-    
+
     return YES;
 }
 

@@ -17,12 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    if(self.presentingViewController) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"dissmiss" forState:UIControlStateNormal];
+        
+        button.frame = CGRectMake(100, 100, 100, 100);
+        [self.view addSubview:button];
+        [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)buttonClick {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

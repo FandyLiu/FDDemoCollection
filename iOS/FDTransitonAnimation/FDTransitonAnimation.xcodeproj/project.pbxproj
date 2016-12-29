@@ -16,6 +16,9 @@
 		D72BFFF71DF5054200FF22E9 /* FDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72BFFF61DF5054200FF22E9 /* FDTableViewController.m */; };
 		D72BFFFA1DF505FB00FF22E9 /* FDPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D72BFFF91DF505FB00FF22E9 /* FDPushTransition.m */; };
 		D72BFFFD1DF50A1800FF22E9 /* FDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D72BFFFC1DF50A1800FF22E9 /* FDDetailViewController.m */; };
+		D7AC31371E14A94A005B7BC0 /* FDModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AC31361E14A94A005B7BC0 /* FDModalTransition.m */; };
+		D7AC313B1E14AA68005B7BC0 /* FDMainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AC313A1E14AA68005B7BC0 /* FDMainTabBarController.m */; };
+		D7AC313E1E14AEE0005B7BC0 /* FDTableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AC313D1E14AEE0005B7BC0 /* FDTableViewController1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,12 @@
 		D72BFFF91DF505FB00FF22E9 /* FDPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDPushTransition.m; sourceTree = "<group>"; };
 		D72BFFFB1DF50A1800FF22E9 /* FDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDDetailViewController.h; sourceTree = "<group>"; };
 		D72BFFFC1DF50A1800FF22E9 /* FDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDDetailViewController.m; sourceTree = "<group>"; };
+		D7AC31351E14A94A005B7BC0 /* FDModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDModalTransition.h; sourceTree = "<group>"; };
+		D7AC31361E14A94A005B7BC0 /* FDModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDModalTransition.m; sourceTree = "<group>"; };
+		D7AC31391E14AA68005B7BC0 /* FDMainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMainTabBarController.h; sourceTree = "<group>"; };
+		D7AC313A1E14AA68005B7BC0 /* FDMainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMainTabBarController.m; sourceTree = "<group>"; };
+		D7AC313C1E14AEE0005B7BC0 /* FDTableViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTableViewController1.h; sourceTree = "<group>"; };
+		D7AC313D1E14AEE0005B7BC0 /* FDTableViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTableViewController1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +114,17 @@
 		D72BFFC11DF5045A00FF22E9 /* FDTransitonAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				D72BFFF81DF505FB00FF22E9 /* FDPushTransition.h */,
-				D72BFFF91DF505FB00FF22E9 /* FDPushTransition.m */,
+				D7AC31381E14A9BE005B7BC0 /* Transition */,
 				D72BFFC51DF5045A00FF22E9 /* AppDelegate.h */,
 				D72BFFC61DF5045A00FF22E9 /* AppDelegate.m */,
+				D7AC31391E14AA68005B7BC0 /* FDMainTabBarController.h */,
+				D7AC313A1E14AA68005B7BC0 /* FDMainTabBarController.m */,
 				D72BFFF51DF5054200FF22E9 /* FDTableViewController.h */,
 				D72BFFF61DF5054200FF22E9 /* FDTableViewController.m */,
 				D72BFFFB1DF50A1800FF22E9 /* FDDetailViewController.h */,
 				D72BFFFC1DF50A1800FF22E9 /* FDDetailViewController.m */,
+				D7AC313C1E14AEE0005B7BC0 /* FDTableViewController1.h */,
+				D7AC313D1E14AEE0005B7BC0 /* FDTableViewController1.m */,
 				D72BFFCE1DF5045A00FF22E9 /* Assets.xcassets */,
 				D72BFFD01DF5045A00FF22E9 /* LaunchScreen.storyboard */,
 				D72BFFD31DF5045A00FF22E9 /* Info.plist */,
@@ -145,6 +157,17 @@
 				D72BFFE91DF5045A00FF22E9 /* Info.plist */,
 			);
 			path = FDTransitonAnimationUITests;
+			sourceTree = "<group>";
+		};
+		D7AC31381E14A9BE005B7BC0 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				D72BFFF81DF505FB00FF22E9 /* FDPushTransition.h */,
+				D72BFFF91DF505FB00FF22E9 /* FDPushTransition.m */,
+				D7AC31351E14A94A005B7BC0 /* FDModalTransition.h */,
+				D7AC31361E14A94A005B7BC0 /* FDModalTransition.m */,
+			);
+			name = Transition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +308,11 @@
 			files = (
 				D72BFFC71DF5045A00FF22E9 /* AppDelegate.m in Sources */,
 				D72BFFC41DF5045A00FF22E9 /* main.m in Sources */,
+				D7AC31371E14A94A005B7BC0 /* FDModalTransition.m in Sources */,
 				D72BFFFD1DF50A1800FF22E9 /* FDDetailViewController.m in Sources */,
 				D72BFFFA1DF505FB00FF22E9 /* FDPushTransition.m in Sources */,
+				D7AC313E1E14AEE0005B7BC0 /* FDTableViewController1.m in Sources */,
+				D7AC313B1E14AA68005B7BC0 /* FDMainTabBarController.m in Sources */,
 				D72BFFF71DF5054200FF22E9 /* FDTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +541,7 @@
 				D72BFFEE1DF5045A00FF22E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D72BFFEF1DF5045A00FF22E9 /* Build configuration list for PBXNativeTarget "FDTransitonAnimationTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +550,7 @@
 				D72BFFF11DF5045A00FF22E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D72BFFF21DF5045A00FF22E9 /* Build configuration list for PBXNativeTarget "FDTransitonAnimationUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +559,7 @@
 				D72BFFF41DF5045A00FF22E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
