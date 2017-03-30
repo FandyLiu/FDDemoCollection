@@ -19,19 +19,65 @@ class CustomTableViewCell: UITableViewCell {
     
     static let indentifier = "CustomTableViewCell"
     
+    var titleLabelWidth: CGFloat {
+        let text: NSString = "你好你好："
+        let contentSize = CGSize(width: CGFloat(MAXFLOAT) , height: CGFloat(MAXFLOAT))
+        return text.textSizeWith(contentSize: contentSize, font: titleLabel.font).width
+    }
+    
+    var separatorLeftConstraint: NSLayoutConstraint?
+    var textFieldRightConstraint: NSLayoutConstraint?
+    
+    var myType: CustomTableViewCellType = .describe(title: "", subtitle: "") {
+        didSet {
+            switch self.myType {
+            case let .describe(title: title, subtitle: subtitle):
+                
+                self.descriptionLabel.text(contents: (text: title, font: FONT_28PX), (text: subtitle, font: FONT_24PX))
+                
+                separatorLeftConstraint?.constant = 0
+                descriptionLabel.isHidden = false
+                titleLabel.isHidden = true
+                textField.isHidden = true
+                arrowImageView.isHidden = true
+            case let .input0(title: title, placeholder: placeholder):
+                titleLabel.text = title
+                textField.placeholder = placeholder
+                
+                separatorLeftConstraint?.constant = 15
+                
+                titleLabel.alignmentJustify_colon(withWidth: titleLabelWidth)
+                
+                descriptionLabel.isHidden = true
+                titleLabel.isHidden = false
+                textField.isHidden = false
+                arrowImageView.isHidden = false
+                
+            default:
+                print("")
+            }
+        }
+    }
+    
+    
     /// 最外层view
     let mycontentView: UIView = {
         let mycontentView = UIView()
         mycontentView.translatesAutoresizingMaskIntoConstraints = false
-        mycontentView.backgroundColor = UIColor.gray
         return mycontentView
+    }()
+    
+    let separatorView: UIView = {
+        let separatorView = UIView()
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.backgroundColor = COLOR_dadada
+        return separatorView
     }()
     
     let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.backgroundColor = UIColor.red
-        descriptionLabel.text = "aaaa"
         descriptionLabel.textColor = COLOR_666666
         descriptionLabel.font = FONT_28PX
         return descriptionLabel
@@ -41,7 +87,6 @@ class CustomTableViewCell: UITableViewCell {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.backgroundColor = UIColor.green
-        titleLabel.text = "你好你好："
         titleLabel.textColor = COLOR_222222
         titleLabel.font = FONT_28PX
         return titleLabel
@@ -51,7 +96,6 @@ class CustomTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor.blue
-        textField.text = "你好你好："
         textField.textColor = COLOR_222222
         textField.font = FONT_28PX
         return textField
@@ -63,6 +107,19 @@ class CustomTableViewCell: UITableViewCell {
         return arrow
     }()
     
+    let verificationButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setTitle("获取验证码", for: .normal)
+        btn.backgroundColor = COLOR_1478b8
+        btn.setTitleColor(UIColor.white, for: .normal)
+        btn.titleLabel?.font = FONT_24PX
+        btn.layer.cornerRadius = 5.f
+        btn.layer.masksToBounds = true
+        return btn
+    }()
+    
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -73,19 +130,42 @@ class CustomTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    var type: CustomTableViewCellType = .describe(title: "", subtitle: "")
     
+}
+
+
+
+extension CustomTableViewCell {
     fileprivate func setupUI() {
         contentView.addSubview(mycontentView)
+        contentView.addSubview(separatorView)
         mycontentView.addSubview(descriptionLabel)
         mycontentView.addSubview(titleLabel)
         mycontentView.addSubview(textField)
         mycontentView.addSubview(arrowImageView)
-        
+        mycontentView.addSubview(verificationButton)
+
         // mycontentView
         ({
             contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[mycontentView]-25-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: ["mycontentView" : mycontentView]))
-            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[mycontentView]-0-|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["mycontentView" : mycontentView]))
+            
+            let bottomConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
+            let topConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.0)
+            contentView.addConstraints([bottomConstraint, topConstraint])
             }())
+        
+        // separatorView
+        ({
+            let leftConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)
+            separatorLeftConstraint = leftConstraint
+            let rightConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
+            let bottomConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
+            let heightConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 1)
+            separatorView.addConstraint(heightConstraint)
+            contentView.addConstraints([leftConstraint, rightConstraint, bottomConstraint])
+            }())
+        
         // descriptionLabel
         ({
             let leftConstraint = NSLayoutConstraint(item: descriptionLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)
@@ -97,13 +177,10 @@ class CustomTableViewCell: UITableViewCell {
         
         // titleLabel
         ({
-            let text: NSString = "你好你好："
-            let contentSize = CGSize(width: CGFloat(MAXFLOAT) , height: CGFloat(MAXFLOAT))
-            let width = text.textSizeWith(contentSize: contentSize, font: titleLabel.font).width + 2
             
             let leftConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)
             let centerYConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
-            let widthConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: width)
+            let widthConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: titleLabelWidth)
             mycontentView.addConstraints([leftConstraint, centerYConstraint])
             titleLabel.addConstraint(widthConstraint)
             }())
@@ -111,8 +188,9 @@ class CustomTableViewCell: UITableViewCell {
         // textField
         
         ({
-            let leftConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 2.0)
-            let rightConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: -25.0)
+            let leftConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
+            let rightConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
+            textFieldRightConstraint = rightConstraint
             let centerYConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
             mycontentView.addConstraints([leftConstraint, rightConstraint, centerYConstraint])
             }())
@@ -124,9 +202,15 @@ class CustomTableViewCell: UITableViewCell {
             mycontentView.addConstraints([rightConstraint, centerYConstraint])
             }())
         
+        // verificationButton
+        
+        ({
+            let widthConstraint = NSLayoutConstraint(item: verificationButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 80)
+            let heightConstraint = NSLayoutConstraint(item: verificationButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 27)
+            let rightConstraint = NSLayoutConstraint(item: verificationButton, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: -3.0)
+            let centerYConstraint = NSLayoutConstraint(item: verificationButton , attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
+            verificationButton.addConstraints([widthConstraint, heightConstraint])
+            mycontentView.addConstraints([rightConstraint, centerYConstraint])
+            }())
     }
-    
-    
-    var type: CustomTableViewCellType = .describe(title: "", subtitle: "")
-    
 }

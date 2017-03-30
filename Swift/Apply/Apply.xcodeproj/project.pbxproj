@@ -17,6 +17,8 @@
 		DB5FE2A91E8A5D77002ABBB7 /* ApplyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FE2A81E8A5D77002ABBB7 /* ApplyBaseViewController.swift */; };
 		DB5FE2AB1E8A5DB0002ABBB7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FE2AA1E8A5DB0002ABBB7 /* CustomTableViewCell.swift */; };
 		DB5FE2AD1E8A7108002ABBB7 /* FDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */; };
+		DB657A971E8CF772007958E2 /* CustomHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB657A961E8CF772007958E2 /* CustomHeadView.swift */; };
+		DB657A991E8CF915007958E2 /* HeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB657A981E8CF915007958E2 /* HeadViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		DB5FE2A81E8A5D77002ABBB7 /* ApplyBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyBaseViewController.swift; sourceTree = "<group>"; };
 		DB5FE2AA1E8A5DB0002ABBB7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDUtils.swift; sourceTree = "<group>"; };
+		DB657A961E8CF772007958E2 /* CustomHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeadView.swift; sourceTree = "<group>"; };
+		DB657A981E8CF915007958E2 /* HeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				DB5FE27C1E8A4AE7002ABBB7 /* ViewController.swift */,
 				DB5FE2A81E8A5D77002ABBB7 /* ApplyBaseViewController.swift */,
 				DB5FE2AA1E8A5DB0002ABBB7 /* CustomTableViewCell.swift */,
+				DB657A961E8CF772007958E2 /* CustomHeadView.swift */,
+				DB657A981E8CF915007958E2 /* HeadViewCell.swift */,
 				DB5FE27E1E8A4AE8002ABBB7 /* Main.storyboard */,
 				DB5FE2811E8A4AE8002ABBB7 /* Assets.xcassets */,
 				DB5FE2831E8A4AE8002ABBB7 /* LaunchScreen.storyboard */,
@@ -270,9 +276,11 @@
 			files = (
 				DB5FE2A91E8A5D77002ABBB7 /* ApplyBaseViewController.swift in Sources */,
 				DB5FE27D1E8A4AE7002ABBB7 /* ViewController.swift in Sources */,
+				DB657A991E8CF915007958E2 /* HeadViewCell.swift in Sources */,
 				DB5FE2AD1E8A7108002ABBB7 /* FDUtils.swift in Sources */,
 				DB5FE2AB1E8A5DB0002ABBB7 /* CustomTableViewCell.swift in Sources */,
 				DB5FE27B1E8A4AE7002ABBB7 /* AppDelegate.swift in Sources */,
+				DB657A971E8CF772007958E2 /* CustomHeadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +523,7 @@
 				DB5FE2A11E8A4AE9002ABBB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5FE2A21E8A4AE9002ABBB7 /* Build configuration list for PBXNativeTarget "ApplyTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +532,7 @@
 				DB5FE2A41E8A4AE9002ABBB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5FE2A51E8A4AE9002ABBB7 /* Build configuration list for PBXNativeTarget "ApplyUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +541,7 @@
 				DB5FE2A71E8A4AE9002ABBB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
