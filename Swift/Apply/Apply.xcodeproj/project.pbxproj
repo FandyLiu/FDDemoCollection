@@ -19,6 +19,11 @@
 		DB5FE2AD1E8A7108002ABBB7 /* FDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */; };
 		DB657A971E8CF772007958E2 /* CustomHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB657A961E8CF772007958E2 /* CustomHeadView.swift */; };
 		DB657A991E8CF915007958E2 /* HeadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB657A981E8CF915007958E2 /* HeadViewCell.swift */; };
+		DBBB2DB41E8E0BEC00A03E9C /* SegmentedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DB31E8E0BEC00A03E9C /* SegmentedImageView.swift */; };
+		DBBB2DB61E8E2D5900A03E9C /* SegmentedHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DB51E8E2D5900A03E9C /* SegmentedHeadView.swift */; };
+		DBBB2DBB1E8E42CE00A03E9C /* MyselfApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DBA1E8E42CE00A03E9C /* MyselfApplyViewController.swift */; };
+		DBC47A8D1E8E4A890070C870 /* ApplyHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC47A8C1E8E4A890070C870 /* ApplyHeadView.swift */; };
+		DBC47A901E8E52F20070C870 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC47A8F1E8E52F20070C870 /* ImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,11 @@
 		DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDUtils.swift; sourceTree = "<group>"; };
 		DB657A961E8CF772007958E2 /* CustomHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeadView.swift; sourceTree = "<group>"; };
 		DB657A981E8CF915007958E2 /* HeadViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadViewCell.swift; sourceTree = "<group>"; };
+		DBBB2DB31E8E0BEC00A03E9C /* SegmentedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedImageView.swift; sourceTree = "<group>"; };
+		DBBB2DB51E8E2D5900A03E9C /* SegmentedHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedHeadView.swift; sourceTree = "<group>"; };
+		DBBB2DBA1E8E42CE00A03E9C /* MyselfApplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyselfApplyViewController.swift; sourceTree = "<group>"; };
+		DBC47A8C1E8E4A890070C870 /* ApplyHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyHeadView.swift; sourceTree = "<group>"; };
+		DBC47A8F1E8E52F20070C870 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +120,10 @@
 				DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */,
 				DB5FE27A1E8A4AE7002ABBB7 /* AppDelegate.swift */,
 				DB5FE27C1E8A4AE7002ABBB7 /* ViewController.swift */,
+				DBBB2DBA1E8E42CE00A03E9C /* MyselfApplyViewController.swift */,
 				DB5FE2A81E8A5D77002ABBB7 /* ApplyBaseViewController.swift */,
-				DB5FE2AA1E8A5DB0002ABBB7 /* CustomTableViewCell.swift */,
-				DB657A961E8CF772007958E2 /* CustomHeadView.swift */,
-				DB657A981E8CF915007958E2 /* HeadViewCell.swift */,
+				DBC47A8E1E8E52D50070C870 /* Cell */,
+				DBBB2DB91E8E3DA800A03E9C /* Header */,
 				DB5FE27E1E8A4AE8002ABBB7 /* Main.storyboard */,
 				DB5FE2811E8A4AE8002ABBB7 /* Assets.xcassets */,
 				DB5FE2831E8A4AE8002ABBB7 /* LaunchScreen.storyboard */,
@@ -138,6 +148,27 @@
 				DB5FE29C1E8A4AE9002ABBB7 /* Info.plist */,
 			);
 			path = ApplyUITests;
+			sourceTree = "<group>";
+		};
+		DBBB2DB91E8E3DA800A03E9C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				DBC47A8C1E8E4A890070C870 /* ApplyHeadView.swift */,
+				DB657A961E8CF772007958E2 /* CustomHeadView.swift */,
+				DB657A981E8CF915007958E2 /* HeadViewCell.swift */,
+				DBBB2DB51E8E2D5900A03E9C /* SegmentedHeadView.swift */,
+				DBBB2DB31E8E0BEC00A03E9C /* SegmentedImageView.swift */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		DBC47A8E1E8E52D50070C870 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DB5FE2AA1E8A5DB0002ABBB7 /* CustomTableViewCell.swift */,
+				DBC47A8F1E8E52F20070C870 /* ImageTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,10 +306,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5FE2A91E8A5D77002ABBB7 /* ApplyBaseViewController.swift in Sources */,
+				DBBB2DBB1E8E42CE00A03E9C /* MyselfApplyViewController.swift in Sources */,
 				DB5FE27D1E8A4AE7002ABBB7 /* ViewController.swift in Sources */,
 				DB657A991E8CF915007958E2 /* HeadViewCell.swift in Sources */,
 				DB5FE2AD1E8A7108002ABBB7 /* FDUtils.swift in Sources */,
+				DBC47A8D1E8E4A890070C870 /* ApplyHeadView.swift in Sources */,
 				DB5FE2AB1E8A5DB0002ABBB7 /* CustomTableViewCell.swift in Sources */,
+				DBBB2DB61E8E2D5900A03E9C /* SegmentedHeadView.swift in Sources */,
+				DBBB2DB41E8E0BEC00A03E9C /* SegmentedImageView.swift in Sources */,
+				DBC47A901E8E52F20070C870 /* ImageTableViewCell.swift in Sources */,
 				DB5FE27B1E8A4AE7002ABBB7 /* AppDelegate.swift in Sources */,
 				DB657A971E8CF772007958E2 /* CustomHeadView.swift in Sources */,
 			);

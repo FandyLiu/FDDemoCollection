@@ -33,7 +33,7 @@ class HeadViewCell: UIView {
         super.init(frame: .zero)
         self.title = title
         label.text = title
-        label.translatesAutoresizingMaskIntoConstraints = false
+        
         setupUI()
     }
     
@@ -51,11 +51,10 @@ class HeadViewCell: UIView {
         addSubview(separatorImageView)
         // label
         ({
-            
+            label.translatesAutoresizingMaskIntoConstraints = false
             let leftConstraint = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 25.0)
             let rightConstraint = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: -25.0)
             let centerYConstraint = NSLayoutConstraint(item: label, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-            
             self.addConstraints([leftConstraint, rightConstraint, centerYConstraint])
             }())
         

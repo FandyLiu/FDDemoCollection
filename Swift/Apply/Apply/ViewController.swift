@@ -14,12 +14,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
 
     @IBAction func 我要申请(_ sender: UIButton) {
-        let aapp = ApplyBaseViewController()
+        let aapp = MyselfApplyViewController()
         navigationController?.pushViewController(aapp, animated: true)
     }
 

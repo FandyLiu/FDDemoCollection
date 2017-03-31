@@ -8,14 +8,25 @@
 
 import UIKit
 
-class CustomHeadView: UIView {
+
+
+class CustomHeadView: ApplyHeadView {
     
-    var headViewCells = [HeadViewCell]()
+    fileprivate var headViewCells = [HeadViewCell]()
     
-    var cellHeight: CGFloat = 100.0
+    var cellHeight: CGFloat = 50.0
     
-    init(titles: String...) {
+    fileprivate var titles = [String]()
+    
+    var headViewHeight: CGFloat {
+        return cellHeight * titles.count.f + 17.f
+    }
+    
+    
+    init(titles: [String]) {
         super.init(frame: .zero)
+        backgroundColor = UIColor.white
+        self.titles = titles
         for title in titles {
             let headViewCell = HeadViewCell(title: title)
             addSubview(headViewCell)
@@ -32,7 +43,7 @@ class CustomHeadView: UIView {
 
 
 extension CustomHeadView {
-    func setupConstraint(of headViewCell: HeadViewCell) {
+    fileprivate func setupConstraint(of headViewCell: HeadViewCell) {
         ({
             headViewCell.translatesAutoresizingMaskIntoConstraints = false
             let leftConstraint = NSLayoutConstraint(item: headViewCell, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)
@@ -42,6 +53,5 @@ extension CustomHeadView {
             headViewCell.addConstraint(heightConstraint)
             self.addConstraints([leftConstraint, rightConstraint, topConstraint])
             }())
-
     }
 }

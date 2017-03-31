@@ -120,7 +120,7 @@ let COLOR_222222 = UIColor.rgbColorWith(hexValue: 0x222222)
 let COLOR_c3c3c3 = UIColor.rgbColorWith(hexValue: 0xc3c3c3)
 let COLOR_dadada = UIColor.rgbColorWith(hexValue: 0xdadada)
 let COLOR_1478b8 = UIColor.rgbColorWith(hexValue: 0x1478b8)
-
+let COLOR_efefef = UIColor.rgbColorWith(hexValue: 0xefefef)
 //let FONT_28PX = UIFont.fontWith(pixel: 28.0)
 //let FONT_24PX = UIFont.fontWith(pixel: 24.0)
 

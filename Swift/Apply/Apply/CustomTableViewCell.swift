@@ -12,6 +12,8 @@ enum CustomTableViewCellType {
     case describe(title: String, subtitle: String)
     case input0(title: String, placeholder: String)
     case input1(title: String, rightplaceholder: String)
+    case input2(placeholder: String)
+    case verification(placeholder: String)
 }
 
 
@@ -27,6 +29,7 @@ class CustomTableViewCell: UITableViewCell {
     
     var separatorLeftConstraint: NSLayoutConstraint?
     var textFieldRightConstraint: NSLayoutConstraint?
+    var textFieldLeftConstraint: NSLayoutConstraint?
     
     var myType: CustomTableViewCellType = .describe(title: "", subtitle: "") {
         didSet {
@@ -36,28 +39,56 @@ class CustomTableViewCell: UITableViewCell {
                 self.descriptionLabel.text(contents: (text: title, font: FONT_28PX), (text: subtitle, font: FONT_24PX))
                 
                 separatorLeftConstraint?.constant = 0
-                descriptionLabel.isHidden = false
-                titleLabel.isHidden = true
-                textField.isHidden = true
-                arrowImageView.isHidden = true
+                
+                show(views: descriptionLabel)
+                
             case let .input0(title: title, placeholder: placeholder):
                 titleLabel.text = title
                 textField.placeholder = placeholder
-                
                 separatorLeftConstraint?.constant = 15
+                textFieldLeftConstraint?.constant = 0.0
+                textFieldRightConstraint?.constant = 0.0
                 
                 titleLabel.alignmentJustify_colon(withWidth: titleLabelWidth)
                 
-                descriptionLabel.isHidden = true
-                titleLabel.isHidden = false
-                textField.isHidden = false
-                arrowImageView.isHidden = false
+                show(views: titleLabel, textField)
                 
-            default:
-                print("")
+            case let .input1(title: title, rightplaceholder: rightplaceholder):
+                titleLabel.text = title
+                textField.placeholder = rightplaceholder
+                separatorLeftConstraint?.constant = 15
+                textFieldLeftConstraint?.constant = 0.0
+                textFieldRightConstraint?.constant = 0.0
+                
+                show(views: titleLabel, textField, arrowImageView)
+            case let .input2(placeholder: placeholder):
+                textField.placeholder = placeholder
+                separatorLeftConstraint?.constant = 15
+                textFieldLeftConstraint?.constant = -titleLabelWidth
+                textFieldRightConstraint?.constant = 0.0
+                show(views: textField)
+            case let .verification(placeholder: placeholder):
+                textField.placeholder = placeholder
+                separatorLeftConstraint?.constant = 15
+                textFieldLeftConstraint?.constant = -titleLabelWidth
+                textFieldRightConstraint?.constant = -100.0
+                show(views: textField, verificationButton)
             }
         }
     }
+    
+    func show(views: UIView...) {
+        for view in mycontentView.subviews {
+            if views.contains(view) {
+                view.isHidden = false
+            }else {
+                view.isHidden = true
+            }
+        }
+    }
+    
+    
+    
     
     
     /// 最外层view
@@ -180,7 +211,7 @@ extension CustomTableViewCell {
             
             let leftConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)
             let centerYConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
-            let widthConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: titleLabelWidth)
+            let widthConstraint = NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: titleLabelWidth + 0.5)
             mycontentView.addConstraints([leftConstraint, centerYConstraint])
             titleLabel.addConstraint(widthConstraint)
             }())
@@ -189,6 +220,7 @@ extension CustomTableViewCell {
         
         ({
             let leftConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
+            textFieldLeftConstraint = leftConstraint
             let rightConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
             textFieldRightConstraint = rightConstraint
             let centerYConstraint = NSLayoutConstraint(item: textField, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mycontentView, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
