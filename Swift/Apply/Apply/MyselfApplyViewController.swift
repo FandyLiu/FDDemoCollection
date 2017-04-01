@@ -18,21 +18,12 @@ class MyselfApplyViewController: ApplyBaseViewController {
         super.viewDidLoad()
         headViewStyle = .custom(titles: ["aaaa", "aaa"])
 //        headViewStyle = .segmented(images: ["sr_btn", "gs_btn"])
-        cellItems = [.describe(title: "describe", subtitle: "aa"),
-                     .input0(title: "汉子汉子：", placeholder: "aa"),
-                     .input1(title: "汉子汉子：", rightplaceholder: "aaa"),
-                     .input2(placeholder: "input2"),
-                     .verification(placeholder: "verification"),
-                        .describe(title: "describe", subtitle: "aa"),
-                     .input0(title: "汉子汉子：", placeholder: "aa"),
-                     .input1(title: "汉子汉子：", rightplaceholder: "aaa"),
-                     .input2(placeholder: "input2"),
-                     .verification(placeholder: "verification"),
-                        .describe(title: "describe", subtitle: "aa"),
-                     .input0(title: "汉子汉子：", placeholder: "aa"),
-                     .input1(title: "汉子汉子：", rightplaceholder: "aaa"),
-                     .input2(placeholder: "input2"),
-                     .verification(placeholder: "verification")
+        
+        cellItems = [.common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
         ]
         
     }

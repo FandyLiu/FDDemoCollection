@@ -8,17 +8,28 @@
 
 import UIKit
 
-class ImageTableViewCell: UITableViewCell {
+enum ImageTableViewCellType {
+    case images(images: [String])
+    case titleImages(title: String, images: [String])
+}
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
+    
+    static let indentifier = "ImageTableViewCell"
+    
+    var myType: ImageTableViewCellType = .images(images: [String]())
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupUI() {
+        
     }
 
 }

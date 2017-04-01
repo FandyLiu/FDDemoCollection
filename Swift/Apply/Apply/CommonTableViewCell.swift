@@ -8,7 +8,8 @@
 
 import UIKit
 
-enum CustomTableViewCellType {
+
+enum CommonTableViewCellType {
     case describe(title: String, subtitle: String)
     case input0(title: String, placeholder: String)
     case input1(title: String, rightplaceholder: String)
@@ -17,9 +18,10 @@ enum CustomTableViewCellType {
 }
 
 
-class CustomTableViewCell: UITableViewCell {
+class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
+
     
-    static let indentifier = "CustomTableViewCell"
+    static let indentifier = "CommonTableViewCell"
     
     var titleLabelWidth: CGFloat {
         let text: NSString = "你好你好："
@@ -31,7 +33,7 @@ class CustomTableViewCell: UITableViewCell {
     var textFieldRightConstraint: NSLayoutConstraint?
     var textFieldLeftConstraint: NSLayoutConstraint?
     
-    var myType: CustomTableViewCellType = .describe(title: "", subtitle: "") {
+    var myType: CommonTableViewCellType = .describe(title: "", subtitle: "") {
         didSet {
             switch self.myType {
             case let .describe(title: title, subtitle: subtitle):
@@ -77,6 +79,12 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
+    override var textFieldText: String? {
+        didSet {
+            textField.text = textFieldText
+        }
+    }
+    
     func show(views: UIView...) {
         for view in mycontentView.subviews {
             if views.contains(view) {
@@ -86,18 +94,7 @@ class CustomTableViewCell: UITableViewCell {
             }
         }
     }
-    
-    
-    
-    
-    
-    /// 最外层view
-    let mycontentView: UIView = {
-        let mycontentView = UIView()
-        mycontentView.translatesAutoresizingMaskIntoConstraints = false
-        return mycontentView
-    }()
-    
+
     let separatorView: UIView = {
         let separatorView = UIView()
         separatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +105,7 @@ class CustomTableViewCell: UITableViewCell {
     let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.backgroundColor = UIColor.red
+//        descriptionLabel.backgroundColor = UIColor.red
         descriptionLabel.textColor = COLOR_666666
         descriptionLabel.font = FONT_28PX
         return descriptionLabel
@@ -117,7 +114,7 @@ class CustomTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.backgroundColor = UIColor.green
+//        titleLabel.backgroundColor = UIColor.green
         titleLabel.textColor = COLOR_222222
         titleLabel.font = FONT_28PX
         return titleLabel
@@ -126,7 +123,7 @@ class CustomTableViewCell: UITableViewCell {
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = UIColor.blue
+//        textField.backgroundColor = UIColor.blue
         textField.textColor = COLOR_222222
         textField.font = FONT_28PX
         return textField
@@ -153,7 +150,8 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        selectionStyle = .none
+        textField.delegate = self
+        verificationButton.addTarget(self, action: #selector(CommonTableViewCell.btnClick(btn:)), for: .touchUpInside)
         setupUI()
     }
     
@@ -161,15 +159,36 @@ class CustomTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    var type: CustomTableViewCellType = .describe(title: "", subtitle: "")
     
+    func btnClick(btn: UIButton) {
+        self.window?.endEditing(true)
+        delegate?.commonCell?(self, verificationButtonClick: btn)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension CommonTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.commonCell?(self, textFieldDidEndEditing: textField)
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch myType {
+        case .input1:
+            window?.endEditing(true)
+            delegate?.commonCell?(self, arrowCellClick: textField)
+            return false
+        default:
+            return true
+        }
+    }
 }
 
 
-
-extension CustomTableViewCell {
+// MARK: - UI
+extension CommonTableViewCell {
     fileprivate func setupUI() {
-        contentView.addSubview(mycontentView)
+        
         contentView.addSubview(separatorView)
         mycontentView.addSubview(descriptionLabel)
         mycontentView.addSubview(titleLabel)
@@ -177,15 +196,7 @@ extension CustomTableViewCell {
         mycontentView.addSubview(arrowImageView)
         mycontentView.addSubview(verificationButton)
 
-        // mycontentView
-        ({
-            contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-25-[mycontentView]-25-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: ["mycontentView" : mycontentView]))
-            
-            let bottomConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
-            let topConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.0)
-            contentView.addConstraints([bottomConstraint, topConstraint])
-            }())
-        
+                
         // separatorView
         ({
             let leftConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.left, multiplier: 1.0, constant: 0.0)

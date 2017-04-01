@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class CustomHeadView: ApplyHeadView {
+class CustomHeadView: ApplyHeadView, ApplyHeadViewProtocol {
     
     fileprivate var headViewCells = [HeadViewCell]()
     

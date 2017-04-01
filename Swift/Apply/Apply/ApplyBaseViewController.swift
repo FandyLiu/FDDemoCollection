@@ -8,27 +8,17 @@
 
 import UIKit
 
-enum ApplyHeadViewStyle {
-    case none
-    case custom(titles: [String])
-    case segmented(images: [String])
-}
+
 
 
 class ApplyBaseViewController: UIViewController {
     
     var headViewStyle: ApplyHeadViewStyle = .none {
         didSet {
-            switch headViewStyle {
-            case let .custom(titles: titles):
-                tableView.tableHeaderView = CustomHeadView(titles: titles)
-            case let .segmented(images: images):
-                let segmentor = SegmentedHeadView(images: images)
-                segmentor.delegate = self
-                tableView.tableHeaderView = segmentor
-            default: break
-            }
-            guard let headView = tableView.tableHeaderView as? ApplyHeadView else {
+            
+//            ApplyHeadViewFactory.applyHeadView(style: headViewStyle)
+            ApplyHeadViewFactory.applyHeadView(style: headViewStyle) as ApplyHeadViewFactory
+            guard let headView = ApplyHeadViewFactory.headView(style: headViewStyle) else {
                 return
             }
             var height = headView.headViewHeight
@@ -47,7 +37,7 @@ class ApplyBaseViewController: UIViewController {
         }
     }
     
-    var cellItems: [CustomTableViewCellType] = [CustomTableViewCellType]() {
+    var cellItems: [ApplyTableViewCellType] = [ApplyTableViewCellType]() {
         didSet {
             tableView.reloadData()
         }
@@ -60,7 +50,8 @@ class ApplyBaseViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 50.0
         tableView.backgroundColor = COLOR_efefef
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.indentifier)
+        ApplyTableViewCellFactory.registerApplyTableViewCell(tableView)
+        
         return tableView
     }()
     
@@ -74,7 +65,6 @@ class ApplyBaseViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: ["tableView": tableView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["tableView": tableView]))
@@ -108,8 +98,10 @@ extension ApplyBaseViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.indentifier) as! CustomTableViewCell
-        cell.myType = cellItems[indexPath.row]
+        let cell = ApplyTableViewCellFactory.dequeueReusableCell(withTableView: tableView, type: cellItems[indexPath.row])!
+        cell.currentIndexPath = indexPath
+        cell.delegate = self
+        cell.textFieldText = "aaaaaa"
         return cell
     }
 }
@@ -117,5 +109,21 @@ extension ApplyBaseViewController: UITableViewDataSource {
 extension ApplyBaseViewController: ApplyHeadViewDelegate {
     func didSelect(_ segmentedHeadView: SegmentedHeadView, index: Int) {
         print(index)
+    }
+}
+
+
+extension ApplyBaseViewController: ApplyTableViewCellDelegate {
+
+    func commonCell(_ commonCell: CommonTableViewCell, textFieldDidEndEditing textField: UITextField) {
+        print("textFieldDidEndEditing\(textField)")
+    }
+    
+    func commonCell(_ commonCell: CommonTableViewCell, arrowCellClick textField: UITextField) {
+        print("arrowCellClick\(textField)")
+    }
+    
+    func commonCell(_ commonCell: CommonTableViewCell, verificationButtonClick verificationButton: UIButton) {
+        print("verificationButtonClick\(verificationButton)")
     }
 }

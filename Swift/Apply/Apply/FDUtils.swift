@@ -112,7 +112,55 @@ extension UITextField {
         attriStr.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: placeholder.characters.count))
         self.attributedPlaceholder = attriStr
     }
+    
+    
+    
 }
+
+extension UITableViewCell {
+    
+    private static var currentIndexPath = "currentIndexPath"
+    
+    var currentIndexPath: IndexPath? {
+        set {
+            objc_setAssociatedObject(self, &UITableViewCell.currentIndexPath, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            
+        }
+        
+        get {
+            return objc_getAssociatedObject(self, &UITableViewCell.currentIndexPath) as? IndexPath
+        }
+    }
+    
+}
+
+extension UIView {
+    func screenViewYValue() -> CGFloat {
+        var y: CGFloat = 0.0
+        var supView: UIView = self
+        while let view = supView.superview {
+            y += view.frame.origin.y
+            if let scrollView = view as? UIScrollView {
+                y -= scrollView.contentOffset.y
+            }
+            supView = view
+        }
+        return y
+    }
+    
+    var superCell: UITableViewCell? {
+        var superView: UIView? = self
+        while (superView as? UITableViewCell) == nil {
+            superView = superView?.superview
+            if superView == nil {
+                return nil
+            }
+        }
+        return superView as? UITableViewCell
+    }
+
+}
+
 
 
 let COLOR_666666 = UIColor.rgbColorWith(hexValue: 0x666666)

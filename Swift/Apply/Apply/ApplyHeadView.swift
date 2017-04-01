@@ -8,26 +8,25 @@
 
 import UIKit
 
-protocol ApplyHeadViewProtocol {
-    var headViewHeight: CGFloat { get }
+enum ApplyHeadViewStyle {
+    case none
+    case custom(titles: [String])
+    case segmented(images: [String])
 }
 
-@objc protocol SegmentedHeadViewDelegate: NSObjectProtocol {
-    @objc optional func didSelect(_ segmentedHeadView: SegmentedHeadView, index: Int)
+protocol ApplyHeadViewProtocol {
+    var headViewHeight: CGFloat { get }
 }
 
 protocol ApplyHeadViewDelegate: SegmentedHeadViewDelegate {
     
 }
 
-
-extension ApplyHeadViewProtocol {
-    var headViewHeight: CGFloat {
-        return 50.0
-    }
-    
+// sub
+@objc protocol SegmentedHeadViewDelegate: NSObjectProtocol {
+    @objc optional func didSelect(_ segmentedHeadView: SegmentedHeadView, index: Int)
 }
 
-class ApplyHeadView: UIView, ApplyHeadViewProtocol, ApplyHeadViewDelegate {
+class ApplyHeadView: UIView {
     weak open var delegate: ApplyHeadViewDelegate?
 }
