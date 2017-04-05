@@ -2,7 +2,7 @@
 //  ApplyTableViewCell.swift
 //  Apply
 //
-//  Created by QianTuFD on 2017/4/1.
+//  Created by QianTuFD on 2017/3/31.
 //  Copyright © 2017年 fandy. All rights reserved.
 //
 
@@ -29,7 +29,10 @@ protocol ApplyTableViewCellDelegate: CommonTableViewCellDelegate {
 class ApplyTableViewCell: UITableViewCell {
     
     weak var delegate: ApplyTableViewCellDelegate?
+    // textField 内部
     var textFieldText: String?
+    
+    var mycontentViewTopConstraint: NSLayoutConstraint?
     /// 最外层view
     let mycontentView: UIView = {
         let mycontentView = UIView()
@@ -47,6 +50,7 @@ class ApplyTableViewCell: UITableViewCell {
             
             let bottomConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
             let topConstraint = NSLayoutConstraint(item: mycontentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.top, multiplier: 1.0, constant: 0.0)
+            mycontentViewTopConstraint = topConstraint
             contentView.addConstraints([bottomConstraint, topConstraint])
             }())
 

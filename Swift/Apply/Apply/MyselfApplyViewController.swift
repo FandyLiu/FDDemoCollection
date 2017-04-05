@@ -16,14 +16,47 @@ class MyselfApplyViewController: ApplyBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        headViewStyle = .custom(titles: ["aaaa", "aaa"])
-//        headViewStyle = .segmented(images: ["sr_btn", "gs_btn"])
+        headViewStyle  = .none(topImage: "3")
+        headViewStyle = .custom(topImage: "3", titles: ["aaa", "aaa"])
+//        headViewStyle = .segmented(topImage: "3",images: ["sr_btn", "gs_btn"])
         
         cellItems = [.common(.describe(title: "describe", subtitle: "aa")),
                      .common(.input0(title: "汉子汉子：", placeholder: "aa")),
                      .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
                      .common(.input2(placeholder: "input2")),
                      .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .common(.describe(title: "describe", subtitle: "aa")),
+                     .common(.input0(title: "汉子汉子：", placeholder: "aa")),
+                     .common(.input1(title: "汉子汉子：", rightplaceholder: "aaa")),
+                     .common(.input2(placeholder: "input2")),
+                     .common(.verification(placeholder: "verification")),
+                     .image(.images(images: ["zh_btn", "zh_btn", "zh_btn"])),
+                     .image(.titleImages(title: "sdfdsfsasa", images: ["zh_btn", "zh_btn", "zh_btn"]))
         ]
         
     }

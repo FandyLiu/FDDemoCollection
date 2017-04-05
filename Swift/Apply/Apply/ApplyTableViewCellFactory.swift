@@ -2,7 +2,7 @@
 //  ApplyTableViewCellFactory.swift
 //  Apply
 //
-//  Created by QianTuFD on 2017/4/1.
+//  Created by QianTuFD on 2017/3/31.
 //  Copyright © 2017年 fandy. All rights reserved.
 //
 
@@ -18,6 +18,21 @@ class ApplyTableViewCellFactory {
         register(tableView, cellClass: CommonTableViewCell.self)
         register(tableView, cellClass: ImageTableViewCell.self)
     }
+    
+    class func dequeueReusableCell(withTableView tableView: UITableView, indexPath: IndexPath, cellItems: [ApplyTableViewCellType], cellContentDict: [IndexPath]) -> ApplyTableViewCell? {
+        
+        switch cellItems[indexPath.row] {
+        case let .common(type):
+            let cell = dequeueReusableCell(withTableView: tableView, cellClass: CommonTableViewCell.self)
+            cell?.myType = type
+            return cell
+        case let .image(type):
+            let cell = dequeueReusableCell(withTableView: tableView, cellClass: ImageTableViewCell.self)
+            cell?.myType = type
+            return cell
+        }
+    }
+    
     class func dequeueReusableCell(withTableView tableView: UITableView, type: ApplyTableViewCellType) -> ApplyTableViewCell? {
         switch type {
         case let .common(type):

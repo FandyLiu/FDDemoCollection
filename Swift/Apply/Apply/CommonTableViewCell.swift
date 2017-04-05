@@ -20,6 +20,7 @@ enum CommonTableViewCellType {
 
 class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
 
+
     
     static let indentifier = "CommonTableViewCell"
     
@@ -150,6 +151,7 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        cellHeight = 50.0
         textField.delegate = self
         verificationButton.addTarget(self, action: #selector(CommonTableViewCell.btnClick(btn:)), for: .touchUpInside)
         setupUI()

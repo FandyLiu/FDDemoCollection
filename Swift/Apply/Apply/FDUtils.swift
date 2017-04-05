@@ -120,6 +120,8 @@ extension UITextField {
 extension UITableViewCell {
     
     private static var currentIndexPath = "currentIndexPath"
+    private static var cellHeight = "cellHeight"
+
     
     var currentIndexPath: IndexPath? {
         set {
@@ -129,6 +131,17 @@ extension UITableViewCell {
         
         get {
             return objc_getAssociatedObject(self, &UITableViewCell.currentIndexPath) as? IndexPath
+        }
+    }
+    
+    var cellHeight: CGFloat? {
+        set {
+            objc_setAssociatedObject(self, &UITableViewCell.cellHeight, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            
+        }
+        
+        get {
+            return objc_getAssociatedObject(self, &UITableViewCell.cellHeight) as? CGFloat
         }
     }
     
@@ -174,4 +187,4 @@ let COLOR_efefef = UIColor.rgbColorWith(hexValue: 0xefefef)
 
 let FONT_28PX = UIFont.systemFont(ofSize: 14)
 let FONT_24PX = UIFont.systemFont(ofSize: 12)
-let FONT_44PX = UIFont.systemFont(ofSize: 22)
+let FONT_36PX = UIFont.systemFont(ofSize: 18)
