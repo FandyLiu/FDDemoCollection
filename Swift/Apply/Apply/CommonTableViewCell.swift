@@ -19,8 +19,6 @@ enum CommonTableViewCellType {
 
 
 class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
-
-
     
     static let indentifier = "CommonTableViewCell"
     
@@ -36,9 +34,9 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     
     var myType: CommonTableViewCellType = .describe(title: "", subtitle: "") {
         didSet {
-            switch self.myType {
+            self.cellType = ApplyTableViewCellType.common(myType)
+            switch myType {
             case let .describe(title: title, subtitle: subtitle):
-                
                 self.descriptionLabel.text(contents: (text: title, font: FONT_28PX), (text: subtitle, font: FONT_24PX))
                 
                 separatorLeftConstraint?.constant = 0
@@ -184,6 +182,60 @@ extension CommonTableViewCell: UITextFieldDelegate {
             return true
         }
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        print(string)
+//        print("textField.texttextField.text=\(textField.text)")
+//        
+//        let FieldValue:NSString  = (textField.text as? NSString)!
+//        let moneyValue:Float = FieldValue.floatValue
+//        let limitValue:Float = 20000.00
+//        guard moneyValue < limitValue else {
+//            return false
+//        }
+//        let contents:NSArray = (textField.text?.components(separatedBy: ".") as? NSArray)!
+//        let first:NSString = contents.firstObject as! NSString
+//        if contents.count > 1 {
+//            if string == "." {
+//                return false
+//            }
+//            if first.length > 5 {
+//                print(first.length > 5 )
+//                return false
+//            }
+//        }
+//        if FieldValue.length == 8 && string.characters.count > 0  {
+//            print(FieldValue.length == 8)
+//            return false
+//        }
+//        let rate:Float = 0.6/100.0
+//        var factMoney:Float = FieldValue.floatValue * rate + 2
+//        if factMoney < 2 {
+//            factMoney = 2
+//            let moneyValue = fabs(FieldValue.floatValue - factMoney)
+//            let text = String.init(format: "%@元",moneyValue )
+//            print("walletValueLabel" + text)
+//            print("1FieldValueFieldValue=\(FieldValue)")
+//            
+//        }else{
+//            print("2FieldValueFieldValue=\(FieldValue)")
+//            let moneyValue = fabs(FieldValue.floatValue - factMoney)
+//            let text = String.init(format: "%@元", moneyValue)
+//            print("walletValueLabel" + text)
+//        }
+//        if contents.count > 1 {
+//            if string == "." {
+//                print("----------------------------")
+//                return false
+//            }
+//            let second:NSString	= contents[1] as! NSString
+//            print("contents\(contents)\nfirst\(first.length)\nFieldValue\(FieldValue.length)\nsecond\(second)")
+//            if second.length == 2 {
+//                return false
+//            }
+//        }
+//        return true
+//    }
 }
 
 
@@ -205,7 +257,7 @@ extension CommonTableViewCell {
             separatorLeftConstraint = leftConstraint
             let rightConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.right, multiplier: 1.0, constant: 0.0)
             let bottomConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: 0.0)
-            let heightConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 1)
+            let heightConstraint = NSLayoutConstraint(item: separatorView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 1.0)
             separatorView.addConstraint(heightConstraint)
             contentView.addConstraints([leftConstraint, rightConstraint, bottomConstraint])
             }())

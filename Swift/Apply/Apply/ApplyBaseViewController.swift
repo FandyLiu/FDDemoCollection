@@ -26,7 +26,12 @@ class ApplyBaseViewController: UIViewController {
     }
     
     // 内容数组
-    var cellContentDict: [IndexPath: String] = [IndexPath: String]()
+    // Any common String  image [UIImage]
+    var cellContentDict: [IndexPath: Any] = [IndexPath: Any]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     
     
@@ -82,6 +87,8 @@ extension ApplyBaseViewController: UITableViewDelegate {
             return calculateCellHeight(title: nil, images: images)
         case let .image(.titleImages(title: title, images: images)):
             return calculateCellHeight(title: title, images: images)
+        case let .button(.button(title: _, top: top, bottom: bottom)):
+            return top + bottom + 45.0
         }
     }
     
@@ -104,31 +111,48 @@ extension ApplyBaseViewController: UITableViewDelegate {
 }
 
 
-extension UIAppearanceContainer {
-    fileprivate func calculateCellHeight(title: String?, images: [String]) -> CGFloat {
+extension ApplyBaseViewController {
+    fileprivate func calculateCellHeight(title: String?, images: [UIImage]) -> CGFloat {
         var height: CGFloat = 0.0
         let width = UIScreen.main.bounds.width - 50.f
         for image in images {
-            let img = UIImage(named: image)
-            if let size = img?.size {
-                let h = size.height / size.width * width
-                height += h
-            }else {
-                print("image size 有问题,或没有image")
-            }
+            let size = image.size
+            let h = size.height / size.width * width
+            height += h
         }
-        let oneImageHeightWithMargin = images.count.f * 22.f + height
+        let oneImageHeightWithMargin = images.count.f * 22.f + height // 以 22 + image 为单位图片高
         
         guard let tit = title else {
-            return oneImageHeightWithMargin + 3
+            return oneImageHeightWithMargin + 3 // 没title为 (50 / 2 = 25) - 22 = 3 多出的
         }
         
         let t = tit as NSString
         let contentSize = CGSize(width: width, height: CGFloat(MAXFLOAT))
         let h = t.textSizeWith(contentSize: contentSize, font: FONT_28PX).height
-        let result = h + 11 + 13 - 22 + oneImageHeightWithMargin
+        let result = (h + 11 + 13) - 22 + oneImageHeightWithMargin + 5 
         return result
     }
+//    func change(_ indexPath: IndexPath, step: Int, toImage: UIImage) {
+////        imageCell.images[step] = toImage
+//        var aImages: [UIImage]
+//        var aTitle: String?
+//
+//        switch cellItems[indexPath.row] {
+//        case let .image(.images(images: images)):
+//            aImages = images
+//        case let .image(.titleImages(title: title, images: images)):
+//            aTitle = title
+//            aImages = images
+//        default:
+//            return
+//        }
+//        aImages[step] = toImage
+//        if let title = aTitle {
+//            cellItems[indexPath.row] = ApplyTableViewCellType.image(.titleImages(title: title, images: aImages))
+//        }else {
+//            cellItems[indexPath.row] = ApplyTableViewCellType.image(.images(images: aImages))
+//        }
+//    }
 }
 
 
@@ -146,7 +170,7 @@ extension ApplyBaseViewController: UITableViewDataSource {
         let cell = ApplyTableViewCellFactory.dequeueReusableCell(withTableView: tableView, type: cellItems[indexPath.row])!
         cell.currentIndexPath = indexPath
         cell.delegate = self
-        cell.textFieldText = cellContentDict[indexPath]
+        cell.myCellContent = cellContentDict[indexPath]
         return cell
     }
 }
@@ -184,8 +208,24 @@ extension ApplyBaseViewController: ApplyTableViewCellDelegate {
         }
         print("第 \(indexPath) 的 verificationButtonClick\(verificationButton)")
     }
+    func imageCell(_ imageCell: ImageTableViewCell, imageButtonClick imageButton: UIImageView) {
+        guard let indexPath = imageCell.currentIndexPath else {
+            return
+        }
+        print("第 \(indexPath) 的 \(imageButton.tag) verificationButtonClick\(imageButton)")
+        guard var images = imageCell.images, images.count >= imageButton.tag else {
+            print("点击⌚️有病")
+            return
+        }
+        images[imageButton.tag] = UIImage(named: "yyzz_btn")!
+        cellContentDict[indexPath] = images
+    }
+    
+    func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton) {
+        print("下一步点击")
+        print(cellContentDict)
+    }
 }
-
 
 // MARK: - UIScrollViewDelegate
 extension ApplyBaseViewController: UIScrollViewDelegate {
@@ -197,6 +237,7 @@ extension ApplyBaseViewController: UIScrollViewDelegate {
             return
         }
         let navBagImageView = navigationController?.navigationBar.subviews.first
-        navBagImageView?.alpha = (offsetY - minOffsetY) / (maxOffsetY - minOffsetY)
+        let alpha = (offsetY - minOffsetY) / (maxOffsetY - minOffsetY)
+        navBagImageView?.alpha = alpha > 1 ? 1 : alpha
     }
 }

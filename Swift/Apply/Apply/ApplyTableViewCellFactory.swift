@@ -11,12 +11,15 @@ import UIKit
 enum ApplyTableViewCellType {
     case common(CommonTableViewCellType)
     case image(ImageTableViewCellType)
+    case button(ButtonTableViewCellType)
 }
+
 
 class ApplyTableViewCellFactory {
     class func registerApplyTableViewCell(_ tableView: UITableView) {
         register(tableView, cellClass: CommonTableViewCell.self)
         register(tableView, cellClass: ImageTableViewCell.self)
+        register(tableView, cellClass: ButtonTableViewCell.self)
     }
     
     class func dequeueReusableCell(withTableView tableView: UITableView, indexPath: IndexPath, cellItems: [ApplyTableViewCellType], cellContentDict: [IndexPath]) -> ApplyTableViewCell? {
@@ -30,6 +33,10 @@ class ApplyTableViewCellFactory {
             let cell = dequeueReusableCell(withTableView: tableView, cellClass: ImageTableViewCell.self)
             cell?.myType = type
             return cell
+        case let .button(type):
+            let cell = dequeueReusableCell(withTableView: tableView, cellClass: ButtonTableViewCell.self)
+            cell?.myType = type
+            return cell
         }
     }
     
@@ -41,6 +48,10 @@ class ApplyTableViewCellFactory {
             return cell
         case let .image(type):
             let cell = dequeueReusableCell(withTableView: tableView, cellClass: ImageTableViewCell.self)
+            cell?.myType = type
+            return cell
+        case let .button(type):
+            let cell = dequeueReusableCell(withTableView: tableView, cellClass: ButtonTableViewCell.self)
             cell?.myType = type
             return cell
         }

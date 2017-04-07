@@ -9,8 +9,8 @@
 import UIKit
 
 enum ImageTableViewCellType {
-    case images(images: [String])
-    case titleImages(title: String, images: [String])
+    case images(images: [UIImage])
+    case titleImages(title: String, images: [UIImage])
 }
 
 class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
@@ -18,7 +18,16 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     
     static let indentifier = "ImageTableViewCell"
     
-    fileprivate var images = [String]()
+    override var images: [UIImage]? {
+        didSet {
+            guard let images = images, imageViews.count >= images.count else {
+                return
+            }
+            for (step, image) in images.enumerated() {
+                imageViews[step].image = image
+            }
+        }
+    }
     fileprivate var title: String?
     fileprivate var imageViews = [UIImageView]()
     fileprivate let titleLabel: UILabel = {
@@ -28,8 +37,17 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         return label
     }()
     
-    var myType: ImageTableViewCellType = .images(images: [String]()) {
+    fileprivate let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.groupTableViewBackground
+        return view
+    }()
+    
+    
+    
+    var myType: ImageTableViewCellType = .images(images: [UIImage]()) {
         didSet {
+            self.cellType = ApplyTableViewCellType.image(myType)
             for view in mycontentView.subviews {
                 view.removeFromSuperview()
             }
@@ -37,13 +55,15 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
             
             switch myType {
             case let .images(images: images):
-                mycontentViewTopConstraint?.constant = 5
-                self.images = images
-//                self.title = nil
-            case let .titleImages(title, images):
+                separatorView.isHidden = true
                 mycontentViewTopConstraint?.constant = 0
                 self.images = images
+                self.title = nil
+            case let .titleImages(title, images):
+                separatorView.isHidden = false
+                mycontentViewTopConstraint?.constant = 5
                 self.title = title
+                self.images = images
             }
             setupUI()
         }
@@ -51,11 +71,24 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
 
     
     func setupUI() {
+        guard let images = images else {
+            return
+        }
+        
         guard let title = title else {
             setupConstraint(of: images, firstToItem: mycontentView, firstC: 25)
            return
         }
+        ({
+            contentView.addSubview(separatorView)
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addConstraint(NSLayoutConstraint(item: separatorView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1.0, constant: 0.0))
+            contentView.addConstraint(NSLayoutConstraint(item: separatorView, attribute: .left, relatedBy: .equal, toItem: contentView, attribute: .left, multiplier: 1.0, constant: 0.0))
+            contentView.addConstraint(NSLayoutConstraint(item: separatorView, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1.0, constant: 0.0))
+            separatorView.addConstraint(NSLayoutConstraint(item: separatorView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 5.0))
+            }())
         
+
         titleLabel.text = title
         mycontentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +98,13 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         
     }
     
-    func setupConstraint(of images: [String], firstToItem: UIView, firstC: CGFloat) {
+    func setupConstraint(of images: [UIImage], firstToItem: UIView, firstC: CGFloat) {
         for image in images {
-            let image = UIImage(named: image)
             let imageView = UIImageView(image: image)
+            imageView.isUserInteractionEnabled = true
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(imageBtnClick(ges:)))
+            imageView.addGestureRecognizer(tapGes)
+            imageView.tag = imageViews.count
             mycontentView.addSubview(imageView)
             var toItem = firstToItem
             var c: CGFloat = firstC
@@ -84,10 +120,7 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
             imageViews.append(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             
-            guard let size = image?.size else {
-                print("image size 有问题,或没有image")
-                return
-            }
+            let size = image.size
             mycontentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: mycontentView, attribute: .width, multiplier: 1.0, constant: 0.0))
             mycontentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: mycontentView, attribute: .width, multiplier: size.height / size.width, constant: 0.0))
             
@@ -98,5 +131,7 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
 
     }
     
-
+    func imageBtnClick(ges: UITapGestureRecognizer) {
+        delegate?.imageCell?(self, imageButtonClick: ges.view as! UIImageView)
+    }
 }

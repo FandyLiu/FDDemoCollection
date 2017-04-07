@@ -21,16 +21,69 @@ protocol ApplyTableViewCellProtocol {
     @objc optional func commonCell(_ commonCell: CommonTableViewCell, arrowCellClick textField: UITextField)
 }
 
-protocol ApplyTableViewCellDelegate: CommonTableViewCellDelegate {
+
+@objc protocol ImageTableViewCellDelegate: NSObjectProtocol {
+    @objc optional func imageCell(_ imageCell: ImageTableViewCell, imageButtonClick imageButton: UIImageView)
+}
+
+@objc protocol ButtonTableViewCellDelegate: NSObjectProtocol {
+    @objc optional func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton)
+}
+
+
+protocol ApplyTableViewCellDelegate: CommonTableViewCellDelegate, ImageTableViewCellDelegate, ButtonTableViewCellDelegate {
     
 }
 
 
+
 class ApplyTableViewCell: UITableViewCell {
+    var cellType: ApplyTableViewCellType?
     
     weak var delegate: ApplyTableViewCellDelegate?
+    
+    var myCellContent: Any? {
+        
+        get {
+            guard let cellType = cellType else {
+                print("没有初始化cellType")
+                return nil
+            }
+            switch cellType {
+            case .common:
+                return textFieldText
+            case .image:
+                return images
+            default:
+                return nil
+            }
+        }
+        
+        set {
+            guard let cellType = cellType else {
+                print("没有初始化cellType")
+                return
+            }
+            
+            
+            switch cellType {
+            case .common:
+                textFieldText = newValue as? String
+            case .image:
+                guard newValue != nil else {
+                    return
+                }
+                images = newValue as? [UIImage]
+            default:
+                break
+            }
+        }
+    
+    }
+    
     // textField 内部
     var textFieldText: String?
+    var images: [UIImage]?
     
     var mycontentViewTopConstraint: NSLayoutConstraint?
     /// 最外层view
