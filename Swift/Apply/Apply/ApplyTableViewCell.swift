@@ -64,8 +64,7 @@ class ApplyTableViewCell: UITableViewCell {
                 print("没有初始化cellType")
                 return
             }
-            
-            
+
             switch cellType {
             case .common:
                 textFieldText = newValue as? String

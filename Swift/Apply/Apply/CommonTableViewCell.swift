@@ -119,14 +119,15 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         return titleLabel
     }()
     
-    let textField: UITextField = {
+    let textField: UITextField  = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
 //        textField.backgroundColor = UIColor.blue
         textField.textColor = COLOR_222222
         textField.font = FONT_28PX
+        textField.keyboardType = UIKeyboardType.numbersAndPunctuation
         return textField
-    }()
+        }()
     
     let arrowImageView: UIImageView = {
         let arrow = UIImageView(image: UIImage(named: "icon"))
@@ -152,6 +153,9 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         cellHeight = 50.0
         textField.delegate = self
         verificationButton.addTarget(self, action: #selector(CommonTableViewCell.btnClick(btn:)), for: .touchUpInside)
+        
+        
+        
         setupUI()
     }
     
@@ -164,6 +168,8 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         self.window?.endEditing(true)
         delegate?.commonCell?(self, verificationButtonClick: btn)
     }
+    
+    
 }
 
 // MARK: - UITextFieldDelegate
@@ -182,60 +188,6 @@ extension CommonTableViewCell: UITextFieldDelegate {
             return true
         }
     }
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        print(string)
-//        print("textField.texttextField.text=\(textField.text)")
-//        
-//        let FieldValue:NSString  = (textField.text as? NSString)!
-//        let moneyValue:Float = FieldValue.floatValue
-//        let limitValue:Float = 20000.00
-//        guard moneyValue < limitValue else {
-//            return false
-//        }
-//        let contents:NSArray = (textField.text?.components(separatedBy: ".") as? NSArray)!
-//        let first:NSString = contents.firstObject as! NSString
-//        if contents.count > 1 {
-//            if string == "." {
-//                return false
-//            }
-//            if first.length > 5 {
-//                print(first.length > 5 )
-//                return false
-//            }
-//        }
-//        if FieldValue.length == 8 && string.characters.count > 0  {
-//            print(FieldValue.length == 8)
-//            return false
-//        }
-//        let rate:Float = 0.6/100.0
-//        var factMoney:Float = FieldValue.floatValue * rate + 2
-//        if factMoney < 2 {
-//            factMoney = 2
-//            let moneyValue = fabs(FieldValue.floatValue - factMoney)
-//            let text = String.init(format: "%@元",moneyValue )
-//            print("walletValueLabel" + text)
-//            print("1FieldValueFieldValue=\(FieldValue)")
-//            
-//        }else{
-//            print("2FieldValueFieldValue=\(FieldValue)")
-//            let moneyValue = fabs(FieldValue.floatValue - factMoney)
-//            let text = String.init(format: "%@元", moneyValue)
-//            print("walletValueLabel" + text)
-//        }
-//        if contents.count > 1 {
-//            if string == "." {
-//                print("----------------------------")
-//                return false
-//            }
-//            let second:NSString	= contents[1] as! NSString
-//            print("contents\(contents)\nfirst\(first.length)\nFieldValue\(FieldValue.length)\nsecond\(second)")
-//            if second.length == 2 {
-//                return false
-//            }
-//        }
-//        return true
-//    }
 }
 
 
