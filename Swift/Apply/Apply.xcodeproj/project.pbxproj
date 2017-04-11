@@ -24,7 +24,6 @@
 		DB6F0F041E949489000C44A8 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F0F031E949489000C44A8 /* ButtonTableViewCell.swift */; };
 		DB7E198D1E8F4F1D004F6A85 /* ApplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E198C1E8F4F1D004F6A85 /* ApplyTableViewCell.swift */; };
 		DB7E198F1E8F531B004F6A85 /* ApplyTableViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7E198E1E8F531B004F6A85 /* ApplyTableViewCellFactory.swift */; };
-		DB8DD73B1E9B769A00EB79F6 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DD73A1E9B769A00EB79F6 /* AuthorizationManager.swift */; };
 		DBBB2DB41E8E0BEC00A03E9C /* SegmentedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DB31E8E0BEC00A03E9C /* SegmentedImageView.swift */; };
 		DBBB2DB61E8E2D5900A03E9C /* SegmentedHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DB51E8E2D5900A03E9C /* SegmentedHeadView.swift */; };
 		DBBB2DBB1E8E42CE00A03E9C /* MyselfApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB2DBA1E8E42CE00A03E9C /* MyselfApplyViewController.swift */; };
@@ -73,7 +72,6 @@
 		DB6F0F031E949489000C44A8 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		DB7E198C1E8F4F1D004F6A85 /* ApplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTableViewCell.swift; sourceTree = "<group>"; };
 		DB7E198E1E8F531B004F6A85 /* ApplyTableViewCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTableViewCellFactory.swift; sourceTree = "<group>"; };
-		DB8DD73A1E9B769A00EB79F6 /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		DBBB2DB31E8E0BEC00A03E9C /* SegmentedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedImageView.swift; sourceTree = "<group>"; };
 		DBBB2DB51E8E2D5900A03E9C /* SegmentedHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedHeadView.swift; sourceTree = "<group>"; };
 		DBBB2DBA1E8E42CE00A03E9C /* MyselfApplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyselfApplyViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 		DB5FE2791E8A4AE7002ABBB7 /* Apply */ = {
 			isa = PBXGroup;
 			children = (
-				DB8DD73A1E9B769A00EB79F6 /* AuthorizationManager.swift */,
 				DB5FE2AC1E8A7108002ABBB7 /* FDUtils.swift */,
 				DB5FE27A1E8A4AE7002ABBB7 /* AppDelegate.swift */,
 				DB5FE27C1E8A4AE7002ABBB7 /* ViewController.swift */,
@@ -335,7 +332,6 @@
 				DB5FE2AB1E8A5DB0002ABBB7 /* CommonTableViewCell.swift in Sources */,
 				DB7E198F1E8F531B004F6A85 /* ApplyTableViewCellFactory.swift in Sources */,
 				DBBB2DB61E8E2D5900A03E9C /* SegmentedHeadView.swift in Sources */,
-				DB8DD73B1E9B769A00EB79F6 /* AuthorizationManager.swift in Sources */,
 				DBBB2DB41E8E0BEC00A03E9C /* SegmentedImageView.swift in Sources */,
 				DBC47A901E8E52F20070C870 /* ImageTableViewCell.swift in Sources */,
 				DB480A2A1E8FACD200836B76 /* ApplyHeadViewFactory.swift in Sources */,
