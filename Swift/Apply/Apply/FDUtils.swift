@@ -53,23 +53,17 @@ extension UILabel {
         }
         self.attributedText = attriStr
     }
-    
-    
-    // 文字对齐 支持大于等于与3个汉子 不带冒火
+    // 文字对齐 支持大于等于与2个汉子 不带冒火
     func alignmentJustify(withWidth: CGFloat) {
-        guard let originText = self.text else {
+        guard let originText = self.text, originText.characters.count > 1 else {
+            assert(false, "Label没有内容或者Lable内容长度小于2")
             return
         }
         let text = originText as NSString
         
         let textSize = text.textSizeWith(contentSize: CGSize(width: withWidth, height: CGFloat(MAXFLOAT)), font: self.font)
         let margin = (withWidth - textSize.width) / CGFloat(originText.characters.count - 1)
-        let attriStr: NSMutableAttributedString
-        if let originAtrriStr = self.attributedText {
-            attriStr = NSMutableAttributedString(attributedString: originAtrriStr)
-        }else {
-            attriStr = NSMutableAttributedString(string: originText)
-        }
+        let attriStr = NSMutableAttributedString(string: originText)
         attriStr.addAttribute(kCTKernAttributeName as String, value: margin, range:NSRange(location: 0, length: originText.characters.count - 1))
         self.attributedText = attriStr
     }
@@ -79,18 +73,12 @@ extension UILabel {
             assert(false, "Label没有内容或者Lable内容长度小于3")
             return
         }
-        
         let text = originText as NSString
         let colon_W = ":".textSizeWith(contentSize: CGSize(width: withWidth, height: CGFloat(MAXFLOAT)), font: self.font).width
         
         let textSize = text.textSizeWith(contentSize: CGSize(width: withWidth, height: CGFloat(MAXFLOAT)), font: self.font)
         let margin = (withWidth - colon_W - textSize.width) / CGFloat((originText.characters.count - 2))
-        let attriStr: NSMutableAttributedString
-        if let originAtrriStr = self.attributedText {
-            attriStr = NSMutableAttributedString(attributedString: originAtrriStr)
-        }else {
-            attriStr = NSMutableAttributedString(string: originText)
-        }
+        let attriStr = NSMutableAttributedString(string: originText)
         attriStr.addAttribute(NSKernAttributeName, value: margin, range:NSRange(location: 0, length: originText.characters.count - 2))
         self.attributedText = attriStr
     }
@@ -104,12 +92,8 @@ extension UITextField {
         }
         let style = NSMutableParagraphStyle()
         style.alignment = alignment
-        let attriStr: NSMutableAttributedString
-        if let originAtrriStr = self.attributedPlaceholder {
-            attriStr = NSMutableAttributedString(attributedString: originAtrriStr)
-        }else {
-            attriStr = NSMutableAttributedString(string: placeholder)
-        }
+        let attriStr = NSMutableAttributedString(string: placeholder)
+      
         attriStr.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: placeholder.characters.count))
         self.attributedPlaceholder = attriStr
     }

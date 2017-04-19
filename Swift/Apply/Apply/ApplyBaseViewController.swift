@@ -13,6 +13,8 @@ import UIKit
 
 class ApplyBaseViewController: UIViewController {
     
+    var pasteBoard = UIPasteboard.general
+    
     var headViewStyle: ApplyHeadViewStyle = .none(topImage: "") {
         didSet {
             tableView.tableHeaderView = ApplyHeadViewFactory.applyHeadView(tableView: tableView, style: headViewStyle)
@@ -108,6 +110,21 @@ extension ApplyBaseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
+    
+    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        if action == #selector(UIResponderStandardEditActions.copy(_:)) {
+            return true
+        }
+        return false
+    }
+    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        let cell = tableView.cellForRow(at: indexPath) as? CommonTableViewCell
+        pasteBoard.string = cell?.descriptionLabel.text
+    }
+    
 }
 
 

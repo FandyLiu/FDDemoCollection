@@ -18,7 +18,9 @@ class NextViewController: ApplyBaseViewController {
         
         cellItems = [.common(.describe(title: "带有内容的设置", subtitle: "（内容）")),
                      .common(.input0(title: "四个字字：", placeholder: "四个字字")),
-                     .common(.input1(title: "三字字：", rightplaceholder: "三")),
+                     .common(.input0(title: "三个字：", placeholder: "四个字字")),
+                     .common(.input0(title: "两字：", placeholder: "四个字字")),
+                     .common(.input1(title: "三字：", rightplaceholder: "三")),
                      .common(.input2(placeholder: "单输入框")),
                      .image(.titleImages(title: "带有一个标题的image 上面默认有5个距离", images: [UIImage( named: "zh_btn")!, UIImage( named: "zh_btn")!, UIImage( named: "zh_btn")!, UIImage( named: "zh_btn")!])),
                      .button(.button(title: "标题 上距离 下距离", top: 100, bottom: 122)),

@@ -33,22 +33,15 @@ class ViewController: UIViewController {
         
         // 自己填写的
         
-//        let aapp = MyselfApplyViewController()
-//        navigationController?.pushViewController(aapp, animated: true)
-        AuthorizationManager.configure { (configuration) in
-            configuration.title = "哈哈哈"
-            configuration.message = "hahahahaha"
-            configuration.presentingViewController = self
-        }.authorizedContacts {
-            let aapp = MyselfApplyViewController()
-            self.navigationController?.pushViewController(aapp, animated: true)
-        }
+        let aapp = MyselfApplyViewController()
+        navigationController?.pushViewController(aapp, animated: true)
+        
     }
 
     @IBAction func 帮人申请(_ sender: UIButton) {
         // 带有默认值转
-//        let aapp = NextViewController()
-//        navigationController?.pushViewController(aapp, animated: true)
+        let aapp = NextViewController()
+        navigationController?.pushViewController(aapp, animated: true)
     }
 }
 

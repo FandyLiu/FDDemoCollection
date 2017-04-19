@@ -59,7 +59,8 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
                 textField.placeholder = rightplaceholder
                 separatorLeftConstraint?.constant = 15
                 textFieldLeftConstraint?.constant = 0.0
-                textFieldRightConstraint?.constant = 0.0
+                textFieldRightConstraint?.constant = -15.0
+                textField.textAlignment = NSTextAlignment.right
                 
                 show(views: titleLabel, textField, arrowImageView)
             case let .input2(placeholder: placeholder):
