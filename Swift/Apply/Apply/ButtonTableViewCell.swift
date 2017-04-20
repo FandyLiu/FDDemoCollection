@@ -56,7 +56,7 @@ class ButtonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     }
     
     func nextButtonClick(btn: UIButton) {
-        
+        self.window?.endEditing(true)
         delegate?.buttonCell?(self, nextButtonClick: btn)
     }
 

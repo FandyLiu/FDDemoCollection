@@ -33,15 +33,15 @@ class ViewController: UIViewController {
         
         // 自己填写的
         
-        let aapp = MyselfApplyViewController()
-        navigationController?.pushViewController(aapp, animated: true)
+        let selfOne = ApplyMyselfViewControllerOne()
+        navigationController?.pushViewController(selfOne, animated: true)
         
     }
 
     @IBAction func 帮人申请(_ sender: UIButton) {
         // 带有默认值转
-        let aapp = NextViewController()
-        navigationController?.pushViewController(aapp, animated: true)
+        let otherOne = ApplyOtherViewControllerOne()
+        navigationController?.pushViewController(otherOne, animated: true)
     }
 }
 

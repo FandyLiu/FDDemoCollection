@@ -61,7 +61,8 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
                 textFieldLeftConstraint?.constant = 0.0
                 textFieldRightConstraint?.constant = -15.0
                 textField.textAlignment = NSTextAlignment.right
-                
+                titleLabel.alignmentJustify_colon(withWidth: titleLabelWidth)
+
                 show(views: titleLabel, textField, arrowImageView)
             case let .input2(placeholder: placeholder):
                 textField.placeholder = placeholder
@@ -154,9 +155,6 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         cellHeight = 50.0
         textField.delegate = self
         verificationButton.addTarget(self, action: #selector(CommonTableViewCell.btnClick(btn:)), for: .touchUpInside)
-        
-        
-        
         setupUI()
     }
     
@@ -180,6 +178,8 @@ extension CommonTableViewCell: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        
         switch myType {
         case .input1:
             window?.endEditing(true)
@@ -188,6 +188,7 @@ extension CommonTableViewCell: UITextFieldDelegate {
         default:
             return true
         }
+                
     }
 }
 

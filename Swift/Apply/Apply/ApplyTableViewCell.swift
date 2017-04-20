@@ -69,10 +69,16 @@ class ApplyTableViewCell: UITableViewCell {
             case .common:
                 textFieldText = newValue as? String
             case .image:
-                guard newValue != nil else {
+                guard let aimages = newValue as? [UIImage?] else {
                     return
                 }
-                images = newValue as? [UIImage]
+                assert(images.count == aimages.count, "不相等")
+                for (index, image) in aimages.enumerated() {
+                    if let image = image {
+                        images[index] = image
+                    }
+                }
+                
             default:
                 break
             }
@@ -82,7 +88,7 @@ class ApplyTableViewCell: UITableViewCell {
     
     // textField 内部
     var textFieldText: String?
-    var images: [UIImage]?
+    var images: [UIImage?] = [UIImage]()
     
     var mycontentViewTopConstraint: NSLayoutConstraint?
     /// 最外层view

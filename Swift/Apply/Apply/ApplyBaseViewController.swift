@@ -8,7 +8,10 @@
 
 import UIKit
 
-
+enum ApplyType {
+    case priv
+    case company
+}
 
 
 class ApplyBaseViewController: UIViewController {
@@ -17,7 +20,10 @@ class ApplyBaseViewController: UIViewController {
     
     var headViewStyle: ApplyHeadViewStyle = .none(topImage: "") {
         didSet {
-            tableView.tableHeaderView = ApplyHeadViewFactory.applyHeadView(tableView: tableView, style: headViewStyle)
+            let headView = ApplyHeadViewFactory.applyHeadView(tableView: tableView, style: headViewStyle)
+            headView?.delegate = self
+            tableView.tableHeaderView = headView
+            
         }
     }
     
@@ -29,7 +35,7 @@ class ApplyBaseViewController: UIViewController {
     
     // 内容数组
     // Any common String  image [UIImage]
-    var cellContentDict: [IndexPath: Any] = [IndexPath: Any]() {
+    var cellContentDict: [IndexPath: Any?] = [IndexPath: Any?]() {
         didSet {
             tableView.reloadData()
         }
@@ -41,7 +47,8 @@ class ApplyBaseViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.backgroundColor = COLOR_efefef
+//        tableView.backgroundColor = COLOR_efefef
+        tableView.backgroundColor = UIColor.white
         ApplyTableViewCellFactory.registerApplyTableViewCell(tableView)
         return tableView
     }()
@@ -53,18 +60,15 @@ class ApplyBaseViewController: UIViewController {
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIView.animate(withDuration: 0.3) { 
-            self.navigationController?.navigationBar.subviews.first?.alpha = 0.0
-        }
+        setupNavBarAlpha()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.subviews.first?.alpha = 1.0
-        }
+        self.navigationController?.navigationBar.subviews.first?.alpha = 1
     }
+    
     
 
     func setupUI() {
@@ -129,10 +133,13 @@ extension ApplyBaseViewController: UITableViewDelegate {
 
 
 extension ApplyBaseViewController {
-    fileprivate func calculateCellHeight(title: String?, images: [UIImage]) -> CGFloat {
+    fileprivate func calculateCellHeight(title: String?, images: [UIImage?]) -> CGFloat {
         var height: CGFloat = 0.0
         let width = UIScreen.main.bounds.width - 50.f
         for image in images {
+            guard let image = image else {
+                return 0
+            }
             let size = image.size
             let h = size.height / size.width * width
             height += h
@@ -187,7 +194,10 @@ extension ApplyBaseViewController: UITableViewDataSource {
         let cell = ApplyTableViewCellFactory.dequeueReusableCell(withTableView: tableView, type: cellItems[indexPath.row])!
         cell.currentIndexPath = indexPath
         cell.delegate = self
-        cell.myCellContent = cellContentDict[indexPath]
+        guard let content =  cellContentDict[indexPath] else {
+            return cell
+        }
+        cell.myCellContent = content
         return cell
     }
 }
@@ -230,12 +240,8 @@ extension ApplyBaseViewController: ApplyTableViewCellDelegate {
             return
         }
         print("第 \(indexPath) 的 \(imageButton.tag) verificationButtonClick\(imageButton)")
-        guard var images = imageCell.images, images.count >= imageButton.tag else {
-            print("点击⌚️有病")
-            return
-        }
-        images[imageButton.tag] = UIImage(named: "yyzz_btn")!
-        cellContentDict[indexPath] = images
+        imageCell.images[imageButton.tag] = UIImage(named: "yyzz_btn")
+        cellContentDict[indexPath] = imageCell.images
     }
     
     func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton) {
@@ -247,14 +253,35 @@ extension ApplyBaseViewController: ApplyTableViewCellDelegate {
 // MARK: - UIScrollViewDelegate
 extension ApplyBaseViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
+        guard scrollView.isEqual(tableView) else {
+            return
+        }
+        self.setupNavBarAlpha()
+    }
+    fileprivate func setupNavBarAlpha() {
+        let offsetY = tableView.contentOffset.y
         let minOffsetY: CGFloat = 0.0
         let maxOffsetY: CGFloat = 100.0
         if offsetY > maxOffsetY {
             return
         }
-        let navBagImageView = navigationController?.navigationBar.subviews.first
         let alpha = (offsetY - minOffsetY) / (maxOffsetY - minOffsetY)
-        navBagImageView?.alpha = alpha > 1 ? 1 : alpha
+        UIView.animate(withDuration: 0.3) {
+            self.navigationController?.navigationBar.subviews.first?.alpha = alpha > 1 ? 1 : alpha
+        }
+    }
+}
+
+
+
+// MARK: - showAlertView
+extension ApplyBaseViewController {
+    func showAlertView(with message: String) {
+        let alertController = UIAlertController(title: "提示:", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "确定", style: .cancel) {[weak self] (_)  in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
