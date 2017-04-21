@@ -9,8 +9,8 @@
 import UIKit
 
 enum ImageTableViewCellType {
-    case images(images: [UIImage])
-    case titleImages(title: String, images: [UIImage])
+    case images(images: [UIImage?])
+    case titleImages(title: String, images: [UIImage?])
 }
 
 class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
@@ -18,9 +18,9 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     
     static let indentifier = "ImageTableViewCell"
     
-    override var images: [UIImage]? {
+    override var images: [UIImage?] {
         didSet {
-            guard let images = images, imageViews.count >= images.count else {
+            guard imageViews.count >= images.count else {
                 return
             }
             for (step, image) in images.enumerated() {
@@ -71,9 +71,6 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
 
     
     func setupUI() {
-        guard let images = images else {
-            return
-        }
         
         guard let title = title else {
             setupConstraint(of: images, firstToItem: mycontentView, firstC: 25)
@@ -98,7 +95,7 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
         
     }
     
-    func setupConstraint(of images: [UIImage], firstToItem: UIView, firstC: CGFloat) {
+    func setupConstraint(of images: [UIImage?], firstToItem: UIView, firstC: CGFloat) {
         for image in images {
             let imageView = UIImageView(image: image)
             imageView.isUserInteractionEnabled = true
@@ -120,7 +117,9 @@ class ImageTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
             imageViews.append(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             
-            let size = image.size
+            guard let size = image?.size else {
+                return
+            }
             mycontentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: mycontentView, attribute: .width, multiplier: 1.0, constant: 0.0))
             mycontentView.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: mycontentView, attribute: .width, multiplier: size.height / size.width, constant: 0.0))
             

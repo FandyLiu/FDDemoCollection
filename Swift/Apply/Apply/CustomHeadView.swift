@@ -18,8 +18,14 @@ class CustomHeadView: ApplyHeadView {
     
     fileprivate var titles = [String]()
     
+    fileprivate let bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = COLOR_efefef
+        return view
+    }()
+    
     override var headViewHeight: CGFloat {
-        return cellHeight * titles.count.f + 17.f + topViewHeight
+        return cellHeight * titles.count.f + 17.f + topViewHeight + 5.f
     }
     
     
@@ -33,6 +39,19 @@ class CustomHeadView: ApplyHeadView {
             headViewCells.append(headViewCell)
             setupConstraint(of: headViewCell)
         }
+        addSubview(bottomView)
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        bottomView.addConstraint(NSLayoutConstraint(item: bottomView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 5.0))
+        guard let lastCell = headViewCells.last else {
+            return
+        }
+        
+        addConstraint(NSLayoutConstraint(item: bottomView, attribute: .top, relatedBy: .equal, toItem: lastCell, attribute: .bottom, multiplier: 1.0, constant: 17.f))
+            addConstraint(NSLayoutConstraint(item: bottomView, attribute: .left, relatedBy: .equal, toItem: lastCell, attribute: .left, multiplier: 1.0, constant: 0.0))
+
+                addConstraint(NSLayoutConstraint(item: bottomView, attribute: .right, relatedBy: .equal, toItem: lastCell, attribute: .right, multiplier: 1.0, constant: 0.0))
+
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

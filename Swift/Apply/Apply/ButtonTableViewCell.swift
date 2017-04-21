@@ -56,7 +56,6 @@ class ButtonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     }
     
     func nextButtonClick(btn: UIButton) {
-        
         delegate?.buttonCell?(self, nextButtonClick: btn)
     }
 
