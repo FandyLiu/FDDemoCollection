@@ -8,28 +8,21 @@
 
 import UIKit
 
-class ApplyOtherViewControllerTwo: ApplyBaseViewController {
+class ApplyOtherViewControllerTwo: ApplyBaseViewControllerTypeOne {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+         title = "帮人申请"
+        // 设置 head 样式
+        let account = "13685475986"
+        let name = "李瑞"
+        headViewStyle = .custom(topImage: "2j", titles: ["申请人账号:" + account,
+                                                        "申请人姓名:" + name])
+        
+        nextVC = ApplyOtherViewControllerThree()
+        applyStepModel = ApplyModel.shareApplyModel.applyOtherModel.stepTwo
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

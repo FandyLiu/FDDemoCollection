@@ -59,7 +59,7 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
                 textField.placeholder = rightplaceholder
                 separatorLeftConstraint?.constant = 15
                 textFieldLeftConstraint?.constant = 0.0
-                textFieldRightConstraint?.constant = -15.0
+                textFieldRightConstraint?.constant = -25.0
                 textField.textAlignment = NSTextAlignment.right
                 titleLabel.alignmentJustify_colon(withWidth: titleLabelWidth)
 
@@ -127,7 +127,6 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
 //        textField.backgroundColor = UIColor.blue
         textField.textColor = COLOR_222222
         textField.font = FONT_28PX
-        textField.keyboardType = UIKeyboardType.numbersAndPunctuation
         return textField
         }()
     
@@ -164,7 +163,6 @@ class CommonTableViewCell: ApplyTableViewCell, ApplyTableViewCellProtocol {
     }
     
     func btnClick(btn: UIButton) {
-        self.window?.endEditing(true)
         delegate?.commonCell?(self, verificationButtonClick: btn)
     }
     
@@ -182,7 +180,6 @@ extension CommonTableViewCell: UITextFieldDelegate {
         
         switch myType {
         case .input1:
-            window?.endEditing(true)
             delegate?.commonCell?(self, arrowCellClick: textField)
             return false
         default:

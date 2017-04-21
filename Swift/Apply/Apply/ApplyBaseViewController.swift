@@ -8,15 +8,9 @@
 
 import UIKit
 
-enum ApplyType {
-    case priv
-    case company
-}
-
-
 class ApplyBaseViewController: UIViewController {
     
-    var pasteBoard = UIPasteboard.general
+//    var pasteBoard = UIPasteboard.general
     
     var headViewStyle: ApplyHeadViewStyle = .none(topImage: "") {
         didSet {
@@ -35,16 +29,13 @@ class ApplyBaseViewController: UIViewController {
     
     // 内容数组
     // Any common String  image [UIImage]
-    var cellContentDict: [IndexPath: Any?] = [IndexPath: Any?]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var cellContentDict: [IndexPath: Any?] = [IndexPath: Any?]()
+
+
     
     
-    
-    var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+    var tableView: ApplyBaseTableView = {
+        let tableView = ApplyBaseTableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
         tableView.bounces = false
 //        tableView.backgroundColor = COLOR_efefef
@@ -68,8 +59,6 @@ class ApplyBaseViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.subviews.first?.alpha = 1
     }
-    
-    
 
     func setupUI() {
         view.addSubview(tableView)
@@ -80,6 +69,7 @@ class ApplyBaseViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions.alignAllCenterY, metrics: nil, views: ["tableView": tableView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions.alignAllCenterX, metrics: nil, views: ["tableView": tableView]))
     }
+    
 }
 
 extension ApplyBaseViewController: UITableViewDelegate {
@@ -101,33 +91,33 @@ extension ApplyBaseViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section == 0 else {
+//        guard section == 0 else {
             return 0.1
-        }
-        switch headViewStyle {
-        case .custom:
-            return 5
-        default:
-            return 0.1
-        }
+//        }
+//        switch headViewStyle {
+//        case .custom:
+//            return 5
+//        default:
+//            return 0.1
+//        }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
     
-    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        if action == #selector(UIResponderStandardEditActions.copy(_:)) {
-            return true
-        }
-        return false
-    }
-    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
-        let cell = tableView.cellForRow(at: indexPath) as? CommonTableViewCell
-        pasteBoard.string = cell?.descriptionLabel.text
-    }
+//    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+//        if action == #selector(UIResponderStandardEditActions.copy(_:)) {
+//            return true
+//        }
+//        return false
+//    }
+//    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+//        let cell = tableView.cellForRow(at: indexPath) as? CommonTableViewCell
+//        pasteBoard.string = cell?.descriptionLabel.text
+//    }
     
 }
 
@@ -271,8 +261,6 @@ extension ApplyBaseViewController: UIScrollViewDelegate {
         }
     }
 }
-
-
 
 // MARK: - showAlertView
 extension ApplyBaseViewController {
