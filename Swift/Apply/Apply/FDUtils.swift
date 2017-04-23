@@ -53,7 +53,7 @@ extension UILabel {
         }
         self.attributedText = attriStr
     }
-    // 文字对齐 支持大于等于与2个汉子 不带冒火
+    // 文字对齐 支持大于等于与2个汉子 不带冒hao
     func alignmentJustify(withWidth: CGFloat) {
         guard let originText = self.text, originText.characters.count > 1 else {
             assert(false, "Label没有内容或者Lable内容长度小于2")
@@ -162,6 +162,7 @@ extension UIView {
 
 
 
+let COLOR_ffaf48 = UIColor.rgbColorWith(hexValue: 0xffaf48)
 let COLOR_666666 = UIColor.rgbColorWith(hexValue: 0x666666)
 let COLOR_222222 = UIColor.rgbColorWith(hexValue: 0x222222)
 let COLOR_c3c3c3 = UIColor.rgbColorWith(hexValue: 0xc3c3c3)
@@ -170,6 +171,11 @@ let COLOR_1478b8 = UIColor.rgbColorWith(hexValue: 0x1478b8)
 let COLOR_efefef = UIColor.rgbColorWith(hexValue: 0xefefef)
 //let FONT_28PX = UIFont.fontWith(pixel: 28.0)
 //let FONT_24PX = UIFont.fontWith(pixel: 24.0)
+var defautScale: CGFloat {
+    get {
+        return UIScreen.main.bounds.size.width / 320.0
+    }
+}
 
 let FONT_28PX = UIFont.systemFont(ofSize: 14)
 let FONT_24PX = UIFont.systemFont(ofSize: 12)

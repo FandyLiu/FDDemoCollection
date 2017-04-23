@@ -11,6 +11,8 @@ import UIKit
 class ApplyBaseViewController: UIViewController {
     
 //    var pasteBoard = UIPasteboard.general
+    typealias PickedImageHandle = (UIImage) -> ()
+    var imagePickerFinishHandle: PickedImageHandle?
     
     var headViewStyle: ApplyHeadViewStyle = .none(topImage: "") {
         didSet {
@@ -203,6 +205,13 @@ extension ApplyBaseViewController: ApplyHeadViewDelegate {
 
 // MARK: - ApplyTableViewCellDelegate
 extension ApplyBaseViewController: ApplyTableViewCellDelegate {
+    
+    func commonCell(_ commonCell: CommonTableViewCell, textFieldShouldBeginEditing textField: UITextField) {
+//                guard let indexPath = commonCell.currentIndexPath else {
+//                    return
+//                }
+//                print("第  \(indexPath) 的 arrowCellClick \(textField)")
+    }
 
     func commonCell(_ commonCell: CommonTableViewCell, textFieldDidEndEditing textField: UITextField) {
         guard let indexPath = commonCell.currentIndexPath else {
@@ -212,32 +221,36 @@ extension ApplyBaseViewController: ApplyTableViewCellDelegate {
         print("textFieldDidEndEditing\(textField)")
     }
     
+    
     func commonCell(_ commonCell: CommonTableViewCell, arrowCellClick textField: UITextField) {
-        guard let indexPath = commonCell.currentIndexPath else {
-            return
-        }
-        print("第  \(indexPath) 的 arrowCellClick \(textField)")
+//        guard let indexPath = commonCell.currentIndexPath else {
+//            return
+//        }
+//        print("第  \(indexPath) 的 arrowCellClick \(textField)")
     }
     
     func commonCell(_ commonCell: CommonTableViewCell, verificationButtonClick verificationButton: UIButton) {
-        guard let indexPath = commonCell.currentIndexPath else {
-            return
-        }
-        print("第 \(indexPath) 的 verificationButtonClick\(verificationButton)")
+//        guard let indexPath = commonCell.currentIndexPath else {
+//            return
+//        }
+//        print("第 \(indexPath) 的 verificationButtonClick\(verificationButton)")
     }
+    
     func imageCell(_ imageCell: ImageTableViewCell, imageButtonClick imageButton: UIImageView) {
-        guard let indexPath = imageCell.currentIndexPath else {
-            return
-        }
-        print("第 \(indexPath) 的 \(imageButton.tag) verificationButtonClick\(imageButton)")
-        imageCell.images[imageButton.tag] = UIImage(named: "yyzz_btn")
-        cellContentDict[indexPath] = imageCell.images
+//        guard let indexPath = imageCell.currentIndexPath else {
+//            return
+//        }
+//        print("第 \(indexPath) 的 \(imageButton.tag) verificationButtonClick\(imageButton)")
+//        imageCell.images[imageButton.tag] = UIImage(named: "yyzz_btn")
+//        cellContentDict[indexPath] = imageCell.images
     }
     
     func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton) {
-        print("下一步点击")
-        print(cellContentDict)
+//        print("下一步点击")
+//        print(cellContentDict)
     }
+    
+    
 }
 
 // MARK: - UIScrollViewDelegate
@@ -266,10 +279,47 @@ extension ApplyBaseViewController: UIScrollViewDelegate {
 extension ApplyBaseViewController {
     func showAlertView(with message: String) {
         let alertController = UIAlertController(title: "提示:", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "确定", style: .cancel) {[weak self] (_)  in
-            self?.dismiss(animated: true, completion: nil)
+        let action = UIAlertAction(title: "确定", style: .cancel) {(_)  in
         }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func showPhotoPickerView(finishHandel: @escaping PickedImageHandle) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let action0 = UIAlertAction(title: "拍照", style: .default) {[weak self] (_)  in
+            self?.showImagePickerController(sourceType: .camera, finishHandel: finishHandel)
+        }
+        let action1 = UIAlertAction(title: "相册", style: .default) {[weak self] (_)  in
+            self?.showImagePickerController(sourceType: .photoLibrary, finishHandel: finishHandel)
+        }
+        let action2 = UIAlertAction(title: "取消", style: .cancel) {(_)  in
+        }
+        alertController.addAction(action0)
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func showImagePickerController(sourceType: UIImagePickerControllerSourceType, finishHandel: @escaping PickedImageHandle) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        imagePicker.allowsEditing = false
+        self.imagePickerFinishHandle = finishHandel
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
+
+extension ApplyBaseViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return
+        }
+        self.imagePickerFinishHandle?(image)
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+

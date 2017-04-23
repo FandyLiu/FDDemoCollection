@@ -21,7 +21,7 @@ class ApplyBaseViewControllerTypeTwo: ApplyBaseViewController {
         cellItems = [.common(.input0(title: "公司名称：", placeholder: "请输入营业执照公司全称")),
                      .common(.input0(title: "企业名称：", placeholder: "请输入企业名称缩写")),
                      .common(.input0(title: "公司地址：", placeholder: "请输入公司详细地址(省市区街道)")),
-                     .common(.input1(title: "行业类别", rightplaceholder: "请选择行业类别")),
+                     .common(.input1(title: "行业类别：", rightplaceholder: "请选择行业类别")),
                      .image(.images(images: [UIImage( named: "yyzz_btn")])),
                      .button(.button(title: "下一步", top: 30, bottom: 25))
         ]
@@ -93,6 +93,11 @@ class ApplyBaseViewControllerTypeTwo: ApplyBaseViewController {
         guard let indexPath = commonCell.currentIndexPath else {
             return
         }
+        /*
+         show picker view
+         showPickerView(confirmHandel: (city: String, pro: String) -> ())
+         */
+        
         textField.text = "ahhdfsahdfhs"
         cellContentDict[indexPath] = textField.text
     }
@@ -101,17 +106,13 @@ class ApplyBaseViewControllerTypeTwo: ApplyBaseViewController {
         guard let indexPath = imageCell.currentIndexPath else {
             return
         }
-        guard let image = UIImage(named: "yyzz_btn") else {
-            return
+        showPhotoPickerView { [weak self] (image) in
+            // 上传照片如果上传成功回调
+            let tag = imageButton.tag
+            imageCell.images[tag] = image
+            self?.cellContentDict[indexPath] = imageCell.images
+            self?.applyStepModel?.image = ApplyImage(image: image, path: "")
         }
-        // 上传照片如果成功就保存
-        
-        imageCell.images[imageButton.tag] = image
-        cellContentDict[indexPath] = imageCell.images
-        if imageButton.tag == 0 {
-            applyStepModel?.image = (image, "")
-        }
-        
     }
 
     

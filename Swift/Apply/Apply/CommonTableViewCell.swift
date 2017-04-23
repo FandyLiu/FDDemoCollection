@@ -176,8 +176,7 @@ extension CommonTableViewCell: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-        
+        delegate?.commonCell?(self, textFieldShouldBeginEditing: textField)
         switch myType {
         case .input1:
             delegate?.commonCell?(self, arrowCellClick: textField)

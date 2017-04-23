@@ -57,7 +57,7 @@ class ApplyHeadView: UIView, ApplyHeadViewProtocol {
         addConstraint(NSLayoutConstraint(item: topView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
         
         topView.addConstraint(NSLayoutConstraint(item: topImageView, attribute: .centerX, relatedBy: .equal, toItem: topView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
-        topView.addConstraint(NSLayoutConstraint(item: topImageView, attribute: .bottom, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1.0, constant: -29.0))
+        topView.addConstraint(NSLayoutConstraint(item: topImageView, attribute: .bottom, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1.0, constant: -25.0))
 
     }
 

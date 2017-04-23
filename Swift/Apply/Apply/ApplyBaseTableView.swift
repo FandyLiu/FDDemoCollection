@@ -21,7 +21,6 @@ class ApplyBaseTableView: UITableView {
         if isButton || isImageView {
             return view
         }
-        
         return self
     }
 

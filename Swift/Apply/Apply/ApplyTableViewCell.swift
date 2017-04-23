@@ -17,6 +17,7 @@ protocol ApplyTableViewCellProtocol {
 
 @objc protocol CommonTableViewCellDelegate: NSObjectProtocol {
     @objc optional func commonCell(_ commonCell: CommonTableViewCell, textFieldDidEndEditing textField: UITextField)
+    @objc optional func commonCell(_ commonCell: CommonTableViewCell, textFieldShouldBeginEditing textField: UITextField)
     @objc optional func commonCell(_ commonCell: CommonTableViewCell, verificationButtonClick verificationButton: UIButton)
     @objc optional func commonCell(_ commonCell: CommonTableViewCell, arrowCellClick textField: UITextField)
 }

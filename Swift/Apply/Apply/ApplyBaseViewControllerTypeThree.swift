@@ -27,7 +27,12 @@ class ApplyBaseViewControllerTypeThree: ApplyBaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupPrivate()
+        if applyType == ApplyTypeThreeStyle.priv {
+            setupPrivate()
+        }else {
+            setupCompany()
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -128,11 +133,19 @@ class ApplyBaseViewControllerTypeThree: ApplyBaseViewController {
     }
     
     override func commonCell(_ commonCell: CommonTableViewCell, arrowCellClick textField: UITextField) {
+        super.commonCell(commonCell, textFieldDidEndEditing: textField)
         guard let indexPath = commonCell.currentIndexPath else {
             return
         }
-        textField.text = "ahhdfsahdfhs"
-        cellContentDict[indexPath] = textField.text
+        
+        ApplyPickerView.configer { (config) -> () in
+            config.isTapDismiss = true
+            config.pickerHeight = 260.0
+        }.showCityPickerView {
+            textField.text = "\($0), \($1)"
+            self.cellContentDict[indexPath] = textField.text
+        }
+        
         
     }
     
@@ -140,29 +153,30 @@ class ApplyBaseViewControllerTypeThree: ApplyBaseViewController {
         guard let indexPath = imageCell.currentIndexPath else {
             return
         }
-        guard let image = UIImage(named: "yyzz_btn") else {
-            return
+        showPhotoPickerView { [weak self] (image) in
+            // 上传照片如果上传成功回调
+            let tag = imageButton.tag
+            imageCell.images[tag] = image
+            self?.cellContentDict[indexPath] = imageCell.images
+            if self?.applyType == .company {
+                self?.applyStepModelCompany?.image = ApplyImage(image: image, path: "")
+            }else if self?.applyType == .priv {
+                self?.applyStepModelPriv?.image = ApplyImage(image: image, path: "")
+            }
         }
-        // 上传照片如果成功就保存
-        
-        imageCell.images[imageButton.tag] = image
-        cellContentDict[indexPath] = imageCell.images
-        if imageButton.tag == 0 {
-            applyStepModelCompany?.image = (image, "")
-        }
-        
     }
     
     
     override func didSelect(_ segmentedHeadView: SegmentedHeadView, index: Int) {
         if index == 0 { // 私人
+            self.applyType = .priv
             setupPrivateUI()
             setupPrivate()
-            self.applyType = .priv
+            
         }else if index == 1 { // 公司
+            self.applyType = .company
             setupCompanyUI()
             setupCompany()
-            self.applyType = .company
         }
     }
     
@@ -174,7 +188,7 @@ class ApplyBaseViewControllerTypeThree: ApplyBaseViewController {
                      .common(.input0(title: "开户人：", placeholder: "请输入开户人姓名")),
                      .common(.input0(title: "身份证号：", placeholder: "请输入银行预留身份证号码")),
                      .common(.input0(title: "手机号码：", placeholder: "请输入银行预留手机号码")),
-                     .common(.input0(title: "银行详情", placeholder: "请输入开户行所在省市区及名称")),
+                     .common(.input0(title: "银行详情：", placeholder: "请输入开户行所在省市区及名称")),
                      .button(.button(title: "提交", top: 30, bottom: 25))
         ]
         
@@ -195,7 +209,7 @@ class ApplyBaseViewControllerTypeThree: ApplyBaseViewController {
         cellItems = [.common(.input1(title: "银行卡：", rightplaceholder: "请选择银行卡")),
                      .common(.input0(title: "银行卡号：", placeholder: "请输入银行卡号")),
                      .common(.input0(title: "开户人：", placeholder: "请输入开户人姓名")),
-                     .common(.input0(title: "银行详情", placeholder: "请输入开户行所在省市区及名称")),
+                     .common(.input0(title: "银行详情：", placeholder: "请输入开户行所在省市区及名称")),
                      .image(.titleImages(title: "快捷开通", images: [UIImage(named:"zh_btn")])),
                      .button(.button(title: "下一步", top: 30, bottom: 25))
         ]

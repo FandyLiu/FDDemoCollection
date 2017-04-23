@@ -41,5 +41,7 @@
 	<string>相机</string>
 	<key>NSContactsUsageDescription</key>
 	<string>通讯录</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>相册 </string>
 </dict>
 </plist>

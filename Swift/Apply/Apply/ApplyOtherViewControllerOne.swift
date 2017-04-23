@@ -40,22 +40,31 @@ class ApplyOtherViewControllerOne: ApplyBaseViewController {
         ApplyModelTool.save(model: ApplyModel.shareApplyModel)
     }
     
+    override func commonCell(_ commonCell: CommonTableViewCell, textFieldDidEndEditing textField: UITextField) {
+        super.commonCell(commonCell, textFieldDidEndEditing: textField)
+        
+    }
+    
+    override func commonCell(_ commonCell: CommonTableViewCell, verificationButtonClick verificationButton: UIButton) {
+        /* 110  custom */
+    }
+    
     override func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton) {
         // 字典转模型
         guard let phone = cellContentDict[IndexPath(row: 1, section: 0)] as? String else {
             showAlertView(with: "请输入已经实名认证通过的手机号码")
             return
         }
-        
-        
         guard let verification = cellContentDict[IndexPath(row: 2, section: 0)] as? String else {
             showAlertView(with: "请输入正确的短信验证码")
             return
         }
         // 网络请求判断验证码正确否
-        if verification == "123" {
+        if verification == "110" {
             let two = ApplyOtherViewControllerTwo()
             navigationController?.pushViewController(two, animated: true)
+        }else {
+            showAlertView(with: "验证码不正确")
         }
     }
     

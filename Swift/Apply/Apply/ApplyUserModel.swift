@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ApplyImage = (image: UIImage,path: String)
+
 
 protocol ApplyTypeOneProtocol {
     var phone: String? { get set }
@@ -77,15 +77,22 @@ class ApplyModelTool {
         guard let path = path else {
             return
         }
-        NSKeyedArchiver.archiveRootObject(model, toFile: path)
+        let backgoundQuene = DispatchQueue(label: "fandy.back")
+        backgoundQuene.async {
+            NSKeyedArchiver.archiveRootObject(model, toFile: path)
+        }
     }
     static func readModel() -> ApplyModel {
+        var model = ApplyModel()
         guard let path = path else {
-            return ApplyModel()
+            return model
         }
-        guard let model = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? ApplyModel else {
-            return ApplyModel()
+        let backgoundQuene = DispatchQueue(label: "fandy.back")
+        
+        backgoundQuene.async {
+            model = NSKeyedUnarchiver.unarchiveObject(withFile: path) as? ApplyModel ?? model
         }
+        
         return model
     }
 }
@@ -357,5 +364,24 @@ class StepThree: NSObject, NSCoding {
     }
 }
 
+class ApplyImage: NSObject, NSCoding {
+    var image: UIImage
+    var path: String
+    init(image: UIImage, path: String) {
+        self.image = image
+        self.path = path
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        image = aDecoder.decodeObject(forKey: "image") as! UIImage
+        path = aDecoder.decodeObject(forKey: "path") as! String
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(image, forKey: "image")
+        aCoder.encode(path, forKey: "path")
+    }
+}
 
 

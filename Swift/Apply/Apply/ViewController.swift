@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupNav()
         
+        
     }
     
     
@@ -31,8 +32,6 @@ class ViewController: UIViewController {
 
     @IBAction func 我要申请(_ sender: UIButton) {
         
-        // 自己填写的
-        
         let selfOne = ApplyMyselfViewControllerOne()
         navigationController?.pushViewController(selfOne, animated: true)
         
@@ -43,5 +42,6 @@ class ViewController: UIViewController {
         let otherOne = ApplyOtherViewControllerOne()
         navigationController?.pushViewController(otherOne, animated: true)
     }
+    
 }
 

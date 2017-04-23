@@ -18,11 +18,8 @@ class ApplyOtherViewControllerTwo: ApplyBaseViewControllerTypeOne {
         let name = "李瑞"
         headViewStyle = .custom(topImage: "2j", titles: ["申请人账号:" + account,
                                                         "申请人姓名:" + name])
-        
         nextVC = ApplyOtherViewControllerThree()
         applyStepModel = ApplyModel.shareApplyModel.applyOtherModel.stepTwo
         
     }
-
-    
 }

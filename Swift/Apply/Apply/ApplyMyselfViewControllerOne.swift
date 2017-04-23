@@ -21,9 +21,5 @@ class ApplyMyselfViewControllerOne: ApplyBaseViewControllerTypeOne {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
     }
-    
-    
-    
 }

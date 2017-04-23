@@ -57,23 +57,48 @@ class ApplyBaseViewControllerTypeOne: ApplyBaseViewController {
         ApplyModelTool.save(model: ApplyModel.shareApplyModel)
     }
     
+    override func commonCell(_ commonCell: CommonTableViewCell, textFieldShouldBeginEditing textField: UITextField) {
+        guard let indexPath = commonCell.currentIndexPath else {
+            return
+        }
+        if indexPath.row == 1 {
+            textField.keyboardType = .numberPad
+        }
+    }
+    
+    override func commonCell(_ commonCell: CommonTableViewCell, textFieldDidEndEditing textField: UITextField) {
+        super.commonCell(commonCell, textFieldDidEndEditing: textField)
+        guard let indexPath = commonCell.currentIndexPath else {
+            return
+        }
+        if indexPath.row == 1 {
+            /* 上传手机号码 */
+            if textField.text != "110" {
+                showAlertView(with: "手机号码有问题")
+            }
+        }
+    
+    }
+    
     override func imageCell(_ imageCell: ImageTableViewCell, imageButtonClick imageButton: UIImageView) {
         guard let indexPath = imageCell.currentIndexPath else {
             return
         }
-        guard let image = UIImage(named: "yyzz_btn") else {
-            return
+        showPhotoPickerView { [weak self] (image) in
+            /* image */
+            //  上传照片网络请求
+            
+            //上传照片如果上传成功回调
+            let tag = imageButton.tag
+            imageCell.images[tag] = image
+            self?.cellContentDict[indexPath] = imageCell.images
+            
+            if tag == 0 {
+                self?.applyStepModel?.firstImage = ApplyImage(image: image, path: "")
+            }else if tag == 1 {
+                self?.applyStepModel?.secondImage = ApplyImage(image: image, path: "")
+            }
         }
-        // 上传照片如果成功就保存
-
-        imageCell.images[imageButton.tag] = image
-        cellContentDict[indexPath] = imageCell.images
-        if imageButton.tag == 0 {
-            applyStepModel?.firstImage = (image, "")
-        }else if imageButton.tag == 1 {
-            applyStepModel?.secondImage = (image, "")
-        }
-        
     }
     
     override func buttonCell(_ buttonCell: ButtonTableViewCell, nextButtonClick nextButton: UIButton) {
