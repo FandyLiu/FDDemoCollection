@@ -9,20 +9,54 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
+    
+    lazy var sourceImageView: UIImageView = {
+        let sourceImageView = UIImageView()
+        sourceImageView.translatesAutoresizingMaskIntoConstraints = false
+        sourceImageView.backgroundColor = UIColor.gray
+        return sourceImageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let image = UIImage(named: "test.jpg")
-        self.imageView.image = image
-//        self.imageView.layer.contentsGravity = kCAGravityResizeAspect;
-//        self.imageView.layer.contentsRect = CGRect(x: 0, y: 0, width: 0.5, height: 0.5)
-//        let image = UIImage(named: "test.jpg")?.cgImage
-//        let width = image?.width
-//        let height = image?.height
-//        let rect = CGRect(x: 0, y: 0, width: width! / 2, height: height! / 2)
-//        let ai = image!.cropping(to: rect)
-//        self.imageView.image = UIImage(cgImage: ai!)
+        
+        view.addSubview(sourceImageView)
+        
+        let topConstraint = NSLayoutConstraint(item: sourceImageView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: view,
+                                               attribute: .top,
+                                               multiplier: 1.0,
+                                               constant: 50.0)
+        
+        let leftConstraint = NSLayoutConstraint(item: sourceImageView,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .left,
+                                                multiplier: 1.0,
+                                                constant: 80.0)
+        
+        let rightConstraint = NSLayoutConstraint(item: sourceImageView,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: view,
+                                                 attribute: .right,
+                                                 multiplier: 1.0,
+                                                 constant: -80.0)
+        
+        let heightConstraint = NSLayoutConstraint(item: sourceImageView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: sourceImageView,
+                                                  attribute: .width,
+                                                  multiplier: 1.0,
+                                                  constant: 0.0)
+        view.addConstraints([topConstraint, leftConstraint, rightConstraint])
+        sourceImageView.addConstraint(heightConstraint)
+        
+        
         
 
     }

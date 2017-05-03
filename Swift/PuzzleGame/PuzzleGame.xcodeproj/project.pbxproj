@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DB5B39091EB825CA00B3BFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */; };
 		DB5B390B1EB825CA00B3BFA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */; };
-		DB5B390E1EB825CA00B3BFA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5B390C1EB825CA00B3BFA1 /* Main.storyboard */; };
 		DB5B39101EB825CA00B3BFA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */; };
 		DB5B39131EB825CA00B3BFA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */; };
 		DB5B391E1EB825CA00B3BFA1 /* PuzzleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B391D1EB825CA00B3BFA1 /* PuzzleGameTests.swift */; };
@@ -38,7 +37,6 @@
 		DB5B39051EB825CA00B3BFA1 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DB5B390D1EB825CA00B3BFA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB5B39121EB825CA00B3BFA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB5B39141EB825CA00B3BFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				DB5B39361EB8284900B3BFA1 /* test.jpg */,
 				DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */,
 				DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */,
-				DB5B390C1EB825CA00B3BFA1 /* Main.storyboard */,
 				DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */,
 				DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */,
 				DB5B39141EB825CA00B3BFA1 /* Info.plist */,
@@ -237,7 +234,6 @@
 			files = (
 				DB5B39131EB825CA00B3BFA1 /* LaunchScreen.storyboard in Resources */,
 				DB5B39101EB825CA00B3BFA1 /* Assets.xcassets in Resources */,
-				DB5B390E1EB825CA00B3BFA1 /* Main.storyboard in Resources */,
 				DB5B39371EB8284900B3BFA1 /* test.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,14 +296,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DB5B390C1EB825CA00B3BFA1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB5B390D1EB825CA00B3BFA1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -404,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -509,6 +497,7 @@
 				DB5B392F1EB825CA00B3BFA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5B39301EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +506,7 @@
 				DB5B39321EB825CA00B3BFA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5B39331EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +515,7 @@
 				DB5B39351EB825CA00B3BFA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
