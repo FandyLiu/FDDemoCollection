@@ -8,23 +8,17 @@
 
 import UIKit
 
-
-struct Space {
-    let rows: UInt
-    let cols: UInt
-}
-
 class ViewController: UIViewController {
     
     fileprivate let space: Space
     static let margin: CGFloat = 80
     
-    lazy var croppedImageViewWidth: CGFloat = {
-        return (UIScreen.main.bounds.width - 2 * margin) / self.space.rows.f
-    }()
-    lazy var croppedImageViewHeight: CGFloat = {
-        return (UIScreen.main.bounds.width - 2 * margin) / self.space.cols.f
-    }()
+//    lazy var croppedImageViewWidth: CGFloat = {
+//        return (UIScreen.main.bounds.width - 2 * margin) / self.space.rows.f
+//    }()
+//    lazy var croppedImageViewHeight: CGFloat = {
+//        return (UIScreen.main.bounds.width - 2 * margin) / self.space.cols.f
+//    }()
     
     /// 原图片
     fileprivate lazy var sourceImageView: UIImageView = {
@@ -35,23 +29,24 @@ class ViewController: UIViewController {
     }()
     
     /// 拆分imageView盛放视图
-    fileprivate lazy var imagesContentView: UIView = {
-        let imagesContentView = UIView()
+    fileprivate lazy var imagesContentView: ImagesContentView = {
+        let imagesContentView = ImagesContentView(space: self.space)
         imagesContentView.translatesAutoresizingMaskIntoConstraints = false
         imagesContentView.backgroundColor = UIColor.gray
         return imagesContentView
     }()
     
     /// 初始切割后的图片
-    fileprivate lazy var originImagesArray: [UIImage] = {
+    fileprivate lazy var originImages: [UIImage] = {
         guard let image: UIImage = self.sourceImageView.image else {
             return [UIImage]()
         }
         return image.cropping(rows: self.space.rows, cols: self.space.cols)
     }()
     
-    /// contentView 中 ImagView集合
-    fileprivate var puzzleImageViewsArray = [UIImageView]()
+//    /// Images集合
+//    fileprivate var puzzleImages = [UIImage]()
+    
     
     
     init(space: Space) {
@@ -82,30 +77,16 @@ class ViewController: UIViewController {
     
     /// 打乱顺序
     func puzzle() {
-        var croppedImagesArray = self.originImagesArray
-        if croppedImagesArray.count < 1 {
+        var croppedImages = self.originImages
+        if croppedImages.count < 1 {
             assertionFailure("count 不能小于1")
         }
-//        croppedImagesArray.removeLast()
-        croppedImagesArray = croppedImagesArray.random()
-        for i in 0..<Int(space.rows * space.cols) {
-            let image = croppedImagesArray[i]
-            let imageView = UIImageView(image: image)
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imagesContentView.addSubview(imageView)
-            
-            imageView.tag = i
-            addConstracts(of: imageView)
-            puzzleImageViewsArray.append(imageView)
-        }
+        croppedImages.removeLast()
+        croppedImages = croppedImages.random()
+        imagesContentView.images = croppedImages
     }
 
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
 
 
 }
@@ -114,50 +95,7 @@ class ViewController: UIViewController {
 
 // MARK: - 约束
 extension ViewController {
-    func addConstracts(of imageView: UIImageView) {
-        guard space.rows > 0 && space.cols > 0 else {
-            assertionFailure("列数或者行数不能为0")
-            return
-        }
-        
-        let currenRows = puzzleImageViewsArray.count / Int(space.rows)
-        let currenCols = puzzleImageViewsArray.count % Int(space.rows)
-        
-        let topConstraint = NSLayoutConstraint(item: imageView,
-                                               attribute: .top,
-                                               relatedBy: .equal,
-                                               toItem: imagesContentView,
-                                               attribute: .top,
-                                               multiplier: 1.0,
-                                               constant: currenRows.f * croppedImageViewHeight)
-        
-        let leftConstraint = NSLayoutConstraint(item: imageView,
-                                                attribute: .left,
-                                                relatedBy: .equal,
-                                                toItem: imagesContentView,
-                                                attribute: .left,
-                                                multiplier: 1.0,
-                                                constant: currenCols.f * croppedImageViewWidth)
-        
-        let widthConstraint = NSLayoutConstraint(item: imageView,
-                                                 attribute: .width,
-                                                 relatedBy: .equal,
-                                                 toItem: nil,
-                                                 attribute: .notAnAttribute,
-                                                 multiplier: 0.0,
-                                                 constant: croppedImageViewWidth)
-        
-        let heightConstraint = NSLayoutConstraint(item: imageView,
-                                                  attribute: .height,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 0.0,
-                                                  constant: croppedImageViewHeight)
-        imageView.addConstraints([widthConstraint, heightConstraint])
-        imagesContentView.addConstraints([topConstraint, leftConstraint])
-    }
-    
+
     /// 添加约束
     func addSubViewsConstracts() {
         // sourceImageView
