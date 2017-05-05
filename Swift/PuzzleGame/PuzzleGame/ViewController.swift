@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     fileprivate let space: Space
-    static let margin: CGFloat = 80
+    public static let margin: CGFloat = 80
     
 //    lazy var croppedImageViewWidth: CGFloat = {
 //        return (UIScreen.main.bounds.width - 2 * margin) / self.space.rows.f

@@ -16,8 +16,7 @@ struct Space {
 class ImagesContentView: UIView {
     fileprivate let space: Space
     private(set) var imageViews = [UIImageView]()
-    private(set) var topConstraint = [NSLayoutConstraint]()
-    private(set) var leftConstraint = [NSLayoutConstraint]()
+    
     var images = [UIImage]() {
         didSet {
             if images.count > imageViews.count {
@@ -26,20 +25,18 @@ class ImagesContentView: UIView {
             for (index, image) in images.enumerated() {
                 imageViews[index].image = image
             }
-            
         }
     }
     
     init(space: Space) {
         self.space = space
         super.init(frame: .zero)
-        for i in 0..<Int(space.rows * space.cols) {
+        
+        for i in 0..<Int(space.rows * space.cols - 1) {
             let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(imageView)
             imageView.tag = i
             imageViews.append(imageView)
-            
             let tapGes = UITapGestureRecognizer(target: self, action: #selector(imageViewClick(ges:)))
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGes)
@@ -50,20 +47,46 @@ class ImagesContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func imageViewClick(ges: UIGestureRecognizer) {
-        // 移动图片
-        let tapView = ges.view
-        dump(tapView?.constraints)
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-//        addSubViewsConstracts()
+        let subViewWidth = self.frame.width / space.cols.f
+        let subViewHeight = self.frame.height / space.rows.f
+        for imageView in imageViews {
+            let currenRow = imageView.tag / Int(space.rows)
+            let currenCol = imageView.tag % Int(space.rows)
+            imageView.frame = CGRect(x: subViewWidth * currenCol.f, y: subViewHeight * currenRow.f, width: subViewWidth, height: subViewHeight)
+        }
     }
     
+    func imageViewClick(ges: UIGestureRecognizer) {
+        // 移动图片
+//        let tapImageView = ges.view
+//        
+//        let tapFrame = tapView?.frame
+//        let isOnTheSpaceTop = tapFrame?.minX == lastRect?.minX && tapFrame?.maxY == lastRect?.minY
+//        let isOnTheSpaceBottom = tapFrame?.minX == lastRect?.minX && tapFrame?.minY == lastRect?.maxY
+//        let isOnTheSpaceLeft = tapFrame?.maxY == lastRect?.minX && tapFrame?.minY == lastRect?.minY
+//        let isOnTheSpaceRight = tapFrame?.minX == lastRect?.maxY && tapFrame?.minY == lastRect?.minY
+//        
+//        if isOnTheSpaceTop || isOnTheSpaceLeft || isOnTheSpaceRight || isOnTheSpaceBottom {
+//            let toRect = lastRect
+//            lastRect = tapView?.frame
+//            for constraint in self.constraints {
+//                guard constraint.firstItem.isEqual(tapView) else {
+//                    continue
+//                }
+//                if constraint.firstAttribute == .top {
+//                    constraint.constant = (toRect?.minY)!
+//                }else if constraint.firstAttribute == .left {
+//                    constraint.constant = (toRect?.minX)!
+//                }
+//            }
+//            print("count = \(self.constraints.count)")
+//        }
+    }
 
-
-    func addSubViewsConstracts() {
+    /*
+    func addSubViewsConstracts(width: CGFloat, height: CGFloat) {
         for imageView in imageViews {
             guard space.rows > 0 && space.cols > 0 else {
                 assertionFailure("列数或者行数不能小于0")
@@ -72,9 +95,6 @@ class ImagesContentView: UIView {
             
             let currenRows = imageView.tag / Int(space.rows)
             let currenCols = imageView.tag % Int(space.rows)
-            let width = self.frame.width / space.cols.f
-            let height = self.frame.height / space.rows.f
-            
             let topConstraint = NSLayoutConstraint(item: imageView,
                                                    attribute: .top,
                                                    relatedBy: .equal,
@@ -109,7 +129,6 @@ class ImagesContentView: UIView {
             imageView.addConstraints([widthConstraint, heightConstraint])
             addConstraints([topConstraint, leftConstraint])
         }
-        
     }
-
+ */
 }
