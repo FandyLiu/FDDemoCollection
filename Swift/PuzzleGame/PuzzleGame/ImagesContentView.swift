@@ -15,7 +15,9 @@ struct Space {
 
 class ImagesContentView: UIView {
     fileprivate let space: Space
+    private var isSetupSubViews: Bool
     private(set) var imageViews = [UIImageView]()
+    private var lastRect: CGRect?
     
     var images = [UIImage]() {
         didSet {
@@ -30,6 +32,7 @@ class ImagesContentView: UIView {
     
     init(space: Space) {
         self.space = space
+        isSetupSubViews = false
         super.init(frame: .zero)
         
         for i in 0..<Int(space.rows * space.cols - 1) {
@@ -49,40 +52,43 @@ class ImagesContentView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let subViewWidth = self.frame.width / space.cols.f
-        let subViewHeight = self.frame.height / space.rows.f
-        for imageView in imageViews {
-            let currenRow = imageView.tag / Int(space.rows)
-            let currenCol = imageView.tag % Int(space.rows)
-            imageView.frame = CGRect(x: subViewWidth * currenCol.f, y: subViewHeight * currenRow.f, width: subViewWidth, height: subViewHeight)
+        if !isSetupSubViews {
+            let subViewWidth = self.frame.width / space.cols.f
+            let subViewHeight = self.frame.height / space.rows.f
+            for imageView in imageViews {
+                let currenRow = imageView.tag / Int(space.rows)
+                let currenCol = imageView.tag % Int(space.rows)
+                imageView.frame = CGRect(x: subViewWidth * currenCol.f, y: subViewHeight * currenRow.f, width: subViewWidth, height: subViewHeight)
+            }
+            lastRect = CGRect(x: self.frame.width - subViewWidth, y: self.frame.height - subViewHeight, width: subViewWidth, height: subViewHeight)
+            isSetupSubViews = true
         }
+        
     }
     
+    
+    
     func imageViewClick(ges: UIGestureRecognizer) {
+        
+
         // 移动图片
-//        let tapImageView = ges.view
-//        
-//        let tapFrame = tapView?.frame
-//        let isOnTheSpaceTop = tapFrame?.minX == lastRect?.minX && tapFrame?.maxY == lastRect?.minY
-//        let isOnTheSpaceBottom = tapFrame?.minX == lastRect?.minX && tapFrame?.minY == lastRect?.maxY
-//        let isOnTheSpaceLeft = tapFrame?.maxY == lastRect?.minX && tapFrame?.minY == lastRect?.minY
-//        let isOnTheSpaceRight = tapFrame?.minX == lastRect?.maxY && tapFrame?.minY == lastRect?.minY
-//        
-//        if isOnTheSpaceTop || isOnTheSpaceLeft || isOnTheSpaceRight || isOnTheSpaceBottom {
-//            let toRect = lastRect
-//            lastRect = tapView?.frame
-//            for constraint in self.constraints {
-//                guard constraint.firstItem.isEqual(tapView) else {
-//                    continue
-//                }
-//                if constraint.firstAttribute == .top {
-//                    constraint.constant = (toRect?.minY)!
-//                }else if constraint.firstAttribute == .left {
-//                    constraint.constant = (toRect?.minX)!
-//                }
-//            }
-//            print("count = \(self.constraints.count)")
-//        }
+        let tapImageView = ges.view
+        
+        let tapFrame = tapImageView?.frame
+        let isOnTheSpaceTop = tapFrame?.minX ≈≈≈ lastRect?.minX && tapFrame?.maxY ≈≈≈ lastRect?.minY
+        let isOnTheSpaceBottom = tapFrame?.minX ≈≈≈ lastRect?.minX && tapFrame?.minY ≈≈≈ lastRect?.maxY
+        let isOnTheSpaceLeft = tapFrame?.maxX ≈≈≈ lastRect?.minX && tapFrame?.minY ≈≈≈ lastRect?.minY
+        let isOnTheSpaceRight = tapFrame?.minX ≈≈≈ lastRect?.maxX && tapFrame?.minY ≈≈≈ lastRect?.minY
+        
+        if isOnTheSpaceTop || isOnTheSpaceLeft || isOnTheSpaceRight || isOnTheSpaceBottom {
+            guard let lastRect = lastRect else {
+                assertionFailure("最后Rect妹纸")
+                return
+            }
+            let temp = tapImageView?.frame
+            tapImageView?.frame = lastRect
+            self.lastRect = temp
+        }
     }
 
     /*
@@ -132,3 +138,30 @@ class ImagesContentView: UIView {
     }
  */
 }
+
+
+infix operator ≈≈≈: ComparisonPrecedence
+func ≈≈≈(lhs: CGFloat?, rhs: CGFloat?) -> Bool {
+    guard let lhs = lhs, let rhs = rhs else {
+        return false
+    }
+    let l = String(format: "%.5f", lhs)
+    let r = String(format: "%.5f", rhs)
+    return l == r
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
