@@ -13,18 +13,16 @@ class ViewController: UIViewController {
     fileprivate let space: Space
     public static let margin: CGFloat = 80
     
-//    lazy var croppedImageViewWidth: CGFloat = {
-//        return (UIScreen.main.bounds.width - 2 * margin) / self.space.rows.f
-//    }()
-//    lazy var croppedImageViewHeight: CGFloat = {
-//        return (UIScreen.main.bounds.width - 2 * margin) / self.space.cols.f
-//    }()
-    
     /// 原图片
     fileprivate lazy var sourceImageView: UIImageView = {
         let sourceImageView = UIImageView()
-        sourceImageView.translatesAutoresizingMaskIntoConstraints = false
         sourceImageView.backgroundColor = UIColor.gray
+        sourceImageView.translatesAutoresizingMaskIntoConstraints = false
+        guard let image = UIImage(named: "test.jpg") else {
+            assertionFailure("图片不存在")
+            return sourceImageView
+        }
+        sourceImageView.image = image
         return sourceImageView
     }()
     
@@ -36,7 +34,16 @@ class ViewController: UIViewController {
         return imagesContentView
     }()
     
-    /// 初始切割后的图片
+    fileprivate lazy var resetButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("重置", for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(puzzle), for: .touchUpInside)
+        return button
+    }()
+    
+    /// 初始切割后的图片集合
     fileprivate lazy var originImages: [UIImage] = {
         guard let image: UIImage = self.sourceImageView.image else {
             return [UIImage]()
@@ -44,8 +51,6 @@ class ViewController: UIViewController {
         return image.cropping(rows: self.space.rows, cols: self.space.cols)
     }()
     
-//    /// Images集合
-//    fileprivate var puzzleImages = [UIImage]()
     
     
     
@@ -63,32 +68,34 @@ class ViewController: UIViewController {
         
         view.addSubview(sourceImageView)
         view.addSubview(imagesContentView)
+        view.addSubview(resetButton)
         
+        imagesContentView.delegate = self
         addSubViewsConstracts()
         
-        guard let image = UIImage(named: "test.jpg") else {
-            assertionFailure("图片不存在")
-            return
+        
+        
+        var croppedImages = self.originImages
+        if croppedImages.count < 1 {
+            assertionFailure("count 不能小于1")
         }
-        sourceImageView.image = image
+        croppedImages.removeLast()
+        imagesContentView.originImages = croppedImages
         puzzle()
     }
     
     
     /// 打乱顺序
     func puzzle() {
-        var croppedImages = self.originImages
-        if croppedImages.count < 1 {
-            assertionFailure("count 不能小于1")
-        }
-        croppedImages.removeLast()
-        croppedImages = croppedImages.random()
-        imagesContentView.images = croppedImages
+        imagesContentView.disorganizeSubimageViews()
     }
 
+}
 
-
-
+extension ViewController: ImagesContentViewDelegate {
+    func imagesContentViewDidFinishRecover(_ imagesContentView: ImagesContentView) {
+        print("完成")
+    }
 }
 
 
@@ -172,6 +179,27 @@ extension ViewController {
             
             view.addConstraints([bottomConstraint, leftConstraint, rightConstraint])
             imagesContentView.addConstraint(heightConstraint)
+            }())
+        
+        // imagesContentView
+        ({
+            let centerXConstraint = NSLayoutConstraint(item: resetButton,
+                                                      attribute: .centerX,
+                                                      relatedBy: .equal,
+                                                      toItem: view,
+                                                      attribute: .centerX,
+                                                      multiplier: 1.0,
+                                                      constant: 0.0)
+            
+            let centerYConstraint = NSLayoutConstraint(item: resetButton,
+                                                    attribute: .centerY,
+                                                    relatedBy: .equal,
+                                                    toItem: view,
+                                                    attribute: .centerY,
+                                                    multiplier: 1.0,
+                                                    constant: 0.0)
+            
+            view.addConstraints([centerXConstraint, centerYConstraint])
             }())
     }
 }

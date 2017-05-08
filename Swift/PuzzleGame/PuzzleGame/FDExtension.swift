@@ -30,8 +30,8 @@ extension UIImage {
     /// - Returns: 切割完成的小图片集合
     func cropping(rows: UInt, cols: UInt) -> [UIImage] {
         var croppedImagesArray = [UIImage]()
-        let width = self.size.width / rows.f
-        let height = self.size.height / cols.f
+        let width = self.size.width / cols.f
+        let height = self.size.height / rows.f
         let count = rows * cols
         
         let scale = UIScreen.main.scale

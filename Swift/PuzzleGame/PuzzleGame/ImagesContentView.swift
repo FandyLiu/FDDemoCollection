@@ -8,18 +8,52 @@
 
 import UIKit
 
+
+/// 子图片总共行列数
 struct Space {
     let rows: UInt
     let cols: UInt
 }
 
+protocol ImagesContentViewDelegate: NSObjectProtocol {
+    
+    /// 回复原图回调
+    ///
+    /// - Parameter imagesContentView: 回复原图回调
+    func imagesContentViewDidFinishRecover(_ imagesContentView: ImagesContentView)
+}
+
 class ImagesContentView: UIView {
+    /// 子图片总共行列数
     fileprivate let space: Space
+    
+    /// 是否已经更新过子视图
     private var isSetupSubViews: Bool
+    
+    /// 所有子视图集合
     private(set) var imageViews = [UIImageView]()
+    
+    /// 没有图片的空方块 frame
     private var lastRect: CGRect?
     
-    var images = [UIImage]() {
+    /// key为打乱后位置,value打乱前位置
+    private lazy var placeDict = [Int: Int]()
+    
+    /// 代理
+    weak open var delegate: ImagesContentViewDelegate?
+    
+    /// 子视图原始图片内容
+    var originImages = [UIImage]() {
+        didSet {
+            for i in 0..<originImages.count {
+                placeDict[i] = i
+            }
+            images = originImages
+        }
+    }
+    
+    /// 子视图显示的图片内容
+    private var images = [UIImage]() {
         didSet {
             if images.count > imageViews.count {
                 assertionFailure("图片数量太多了")
@@ -34,7 +68,6 @@ class ImagesContentView: UIView {
         self.space = space
         isSetupSubViews = false
         super.init(frame: .zero)
-        
         for i in 0..<Int(space.rows * space.cols - 1) {
             let imageView = UIImageView()
             addSubview(imageView)
@@ -56,21 +89,17 @@ class ImagesContentView: UIView {
             let subViewWidth = self.frame.width / space.cols.f
             let subViewHeight = self.frame.height / space.rows.f
             for imageView in imageViews {
-                let currenRow = imageView.tag / Int(space.rows)
-                let currenCol = imageView.tag % Int(space.rows)
+                let currenRow = imageView.tag / Int(space.cols)
+                let currenCol = imageView.tag % Int(space.cols)
                 imageView.frame = CGRect(x: subViewWidth * currenCol.f, y: subViewHeight * currenRow.f, width: subViewWidth, height: subViewHeight)
             }
             lastRect = CGRect(x: self.frame.width - subViewWidth, y: self.frame.height - subViewHeight, width: subViewWidth, height: subViewHeight)
             isSetupSubViews = true
         }
-        
     }
     
     
-    
-    func imageViewClick(ges: UIGestureRecognizer) {
-        
-
+    @objc fileprivate func imageViewClick(ges: UIGestureRecognizer) {
         // 移动图片
         let tapImageView = ges.view
         
@@ -88,55 +117,43 @@ class ImagesContentView: UIView {
             let temp = tapImageView?.frame
             tapImageView?.frame = lastRect
             self.lastRect = temp
-        }
-    }
-
-    /*
-    func addSubViewsConstracts(width: CGFloat, height: CGFloat) {
-        for imageView in imageViews {
-            guard space.rows > 0 && space.cols > 0 else {
-                assertionFailure("列数或者行数不能小于0")
-                return
+            
+            let isFinish = checkOutIsFinish()
+            if isFinish {
+                delegate?.imagesContentViewDidFinishRecover(self)
             }
-            
-            let currenRows = imageView.tag / Int(space.rows)
-            let currenCols = imageView.tag % Int(space.rows)
-            let topConstraint = NSLayoutConstraint(item: imageView,
-                                                   attribute: .top,
-                                                   relatedBy: .equal,
-                                                   toItem: self,
-                                                   attribute: .top,
-                                                   multiplier: 1.0,
-                                                   constant: currenRows.f * height)
-            
-            let leftConstraint = NSLayoutConstraint(item: imageView,
-                                                    attribute: .left,
-                                                    relatedBy: .equal,
-                                                    toItem: self,
-                                                    attribute: .left,
-                                                    multiplier: 1.0,
-                                                    constant: currenCols.f * width)
-            
-            let widthConstraint = NSLayoutConstraint(item: imageView,
-                                                     attribute: .width,
-                                                     relatedBy: .equal,
-                                                     toItem: nil,
-                                                     attribute: .notAnAttribute,
-                                                     multiplier: 0.0,
-                                                     constant: width)
-            
-            let heightConstraint = NSLayoutConstraint(item: imageView,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 0.0,
-                                                      constant: height)
-            imageView.addConstraints([widthConstraint, heightConstraint])
-            addConstraints([topConstraint, leftConstraint])
         }
     }
- */
+    
+    /// 打乱子视图图片顺序
+    func disorganizeSubimageViews() {
+        placeDict.removeAll()
+        let randomImages = originImages.random()
+        for (i, image) in randomImages.enumerated() {
+            let index = originImages.index(of: image)
+            placeDict[i] = index
+        }
+        images = randomImages
+    }
+    
+    func checkOutIsFinish() -> Bool {
+        let subViewWidth = self.frame.width / space.cols.f
+        let subViewHeight = self.frame.height / space.rows.f
+        for imageView in imageViews {
+            guard let placeOfImageView = placeDict[imageView.tag] else {
+                assertionFailure("先初始化 placeDict")
+                return false
+            }
+            let currenRow = placeOfImageView / Int(space.cols)
+            let currenCol = placeOfImageView % Int(space.cols)
+            let correctFrame = CGRect(x: subViewWidth * currenCol.f, y: subViewHeight * currenRow.f, width: subViewWidth, height: subViewHeight)
+            let rectIsEqual = imageView.frame ≈≈≈ (correctFrame)
+            guard rectIsEqual else {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 
@@ -150,14 +167,19 @@ func ≈≈≈(lhs: CGFloat?, rhs: CGFloat?) -> Bool {
     return l == r
 }
 
-
-
-
-
-
-
-
-
+func ≈≈≈(lhs: CGRect?, rhs: CGRect?) -> Bool {
+    guard let lhs = lhs, let rhs = rhs else {
+        return false
+    }
+    if lhs.origin.x ≈≈≈ rhs.origin.x &&
+        lhs.origin.y ≈≈≈ rhs.origin.y &&
+        lhs.width ≈≈≈ rhs.width &&
+        lhs.height ≈≈≈ rhs.height
+    {
+        return true
+    }
+    return false
+}
 
 
 
