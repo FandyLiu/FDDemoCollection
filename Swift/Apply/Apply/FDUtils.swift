@@ -97,9 +97,6 @@ extension UITextField {
         attriStr.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: placeholder.characters.count))
         self.attributedPlaceholder = attriStr
     }
-    
-    
-    
 }
 
 // cell 扩展两个属性 一个是 当前indexpath 另一个是高度(高度好像是)

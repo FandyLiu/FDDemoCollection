@@ -1,0 +1,531 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB5B0B221EB9AB7200E79470 /* FDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B0B211EB9AB7200E79470 /* FDExtension.swift */; };
+		DB5B0B241EB9D76400E79470 /* ImagesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B0B231EB9D76400E79470 /* ImagesContentView.swift */; };
+		DB5B39091EB825CA00B3BFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */; };
+		DB5B390B1EB825CA00B3BFA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */; };
+		DB5B39101EB825CA00B3BFA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */; };
+		DB5B39131EB825CA00B3BFA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */; };
+		DB5B391E1EB825CA00B3BFA1 /* PuzzleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B391D1EB825CA00B3BFA1 /* PuzzleGameTests.swift */; };
+		DB5B39291EB825CA00B3BFA1 /* PuzzleGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B39281EB825CA00B3BFA1 /* PuzzleGameUITests.swift */; };
+		DB5B39371EB8284900B3BFA1 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB5B39361EB8284900B3BFA1 /* test.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB5B391A1EB825CA00B3BFA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB5B38FD1EB825CA00B3BFA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB5B39041EB825CA00B3BFA1;
+			remoteInfo = PuzzleGame;
+		};
+		DB5B39251EB825CA00B3BFA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB5B38FD1EB825CA00B3BFA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB5B39041EB825CA00B3BFA1;
+			remoteInfo = PuzzleGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DB5B0B211EB9AB7200E79470 /* FDExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDExtension.swift; sourceTree = "<group>"; };
+		DB5B0B231EB9D76400E79470 /* ImagesContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesContentView.swift; sourceTree = "<group>"; };
+		DB5B39051EB825CA00B3BFA1 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB5B39121EB825CA00B3BFA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB5B39141EB825CA00B3BFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5B39191EB825CA00B3BFA1 /* PuzzleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuzzleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5B391D1EB825CA00B3BFA1 /* PuzzleGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGameTests.swift; sourceTree = "<group>"; };
+		DB5B391F1EB825CA00B3BFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5B39241EB825CA00B3BFA1 /* PuzzleGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuzzleGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5B39281EB825CA00B3BFA1 /* PuzzleGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleGameUITests.swift; sourceTree = "<group>"; };
+		DB5B392A1EB825CA00B3BFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5B39361EB8284900B3BFA1 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB5B39021EB825CA00B3BFA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39161EB825CA00B3BFA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39211EB825CA00B3BFA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB5B38FC1EB825CA00B3BFA1 = {
+			isa = PBXGroup;
+			children = (
+				DB5B39071EB825CA00B3BFA1 /* PuzzleGame */,
+				DB5B391C1EB825CA00B3BFA1 /* PuzzleGameTests */,
+				DB5B39271EB825CA00B3BFA1 /* PuzzleGameUITests */,
+				DB5B39061EB825CA00B3BFA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB5B39061EB825CA00B3BFA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB5B39051EB825CA00B3BFA1 /* PuzzleGame.app */,
+				DB5B39191EB825CA00B3BFA1 /* PuzzleGameTests.xctest */,
+				DB5B39241EB825CA00B3BFA1 /* PuzzleGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB5B39071EB825CA00B3BFA1 /* PuzzleGame */ = {
+			isa = PBXGroup;
+			children = (
+				DB5B39361EB8284900B3BFA1 /* test.jpg */,
+				DB5B39081EB825CA00B3BFA1 /* AppDelegate.swift */,
+				DB5B390A1EB825CA00B3BFA1 /* ViewController.swift */,
+				DB5B0B231EB9D76400E79470 /* ImagesContentView.swift */,
+				DB5B0B211EB9AB7200E79470 /* FDExtension.swift */,
+				DB5B390F1EB825CA00B3BFA1 /* Assets.xcassets */,
+				DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */,
+				DB5B39141EB825CA00B3BFA1 /* Info.plist */,
+			);
+			path = PuzzleGame;
+			sourceTree = "<group>";
+		};
+		DB5B391C1EB825CA00B3BFA1 /* PuzzleGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB5B391D1EB825CA00B3BFA1 /* PuzzleGameTests.swift */,
+				DB5B391F1EB825CA00B3BFA1 /* Info.plist */,
+			);
+			path = PuzzleGameTests;
+			sourceTree = "<group>";
+		};
+		DB5B39271EB825CA00B3BFA1 /* PuzzleGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DB5B39281EB825CA00B3BFA1 /* PuzzleGameUITests.swift */,
+				DB5B392A1EB825CA00B3BFA1 /* Info.plist */,
+			);
+			path = PuzzleGameUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB5B39041EB825CA00B3BFA1 /* PuzzleGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5B392D1EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGame" */;
+			buildPhases = (
+				DB5B39011EB825CA00B3BFA1 /* Sources */,
+				DB5B39021EB825CA00B3BFA1 /* Frameworks */,
+				DB5B39031EB825CA00B3BFA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PuzzleGame;
+			productName = PuzzleGame;
+			productReference = DB5B39051EB825CA00B3BFA1 /* PuzzleGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB5B39181EB825CA00B3BFA1 /* PuzzleGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5B39301EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */;
+			buildPhases = (
+				DB5B39151EB825CA00B3BFA1 /* Sources */,
+				DB5B39161EB825CA00B3BFA1 /* Frameworks */,
+				DB5B39171EB825CA00B3BFA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB5B391B1EB825CA00B3BFA1 /* PBXTargetDependency */,
+			);
+			name = PuzzleGameTests;
+			productName = PuzzleGameTests;
+			productReference = DB5B39191EB825CA00B3BFA1 /* PuzzleGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB5B39231EB825CA00B3BFA1 /* PuzzleGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5B39331EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameUITests" */;
+			buildPhases = (
+				DB5B39201EB825CA00B3BFA1 /* Sources */,
+				DB5B39211EB825CA00B3BFA1 /* Frameworks */,
+				DB5B39221EB825CA00B3BFA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB5B39261EB825CA00B3BFA1 /* PBXTargetDependency */,
+			);
+			name = PuzzleGameUITests;
+			productName = PuzzleGameUITests;
+			productReference = DB5B39241EB825CA00B3BFA1 /* PuzzleGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB5B38FD1EB825CA00B3BFA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = fandy;
+				TargetAttributes = {
+					DB5B39041EB825CA00B3BFA1 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+					};
+					DB5B39181EB825CA00B3BFA1 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DB5B39041EB825CA00B3BFA1;
+					};
+					DB5B39231EB825CA00B3BFA1 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DB5B39041EB825CA00B3BFA1;
+					};
+				};
+			};
+			buildConfigurationList = DB5B39001EB825CA00B3BFA1 /* Build configuration list for PBXProject "PuzzleGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB5B38FC1EB825CA00B3BFA1;
+			productRefGroup = DB5B39061EB825CA00B3BFA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB5B39041EB825CA00B3BFA1 /* PuzzleGame */,
+				DB5B39181EB825CA00B3BFA1 /* PuzzleGameTests */,
+				DB5B39231EB825CA00B3BFA1 /* PuzzleGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB5B39031EB825CA00B3BFA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5B39131EB825CA00B3BFA1 /* LaunchScreen.storyboard in Resources */,
+				DB5B39101EB825CA00B3BFA1 /* Assets.xcassets in Resources */,
+				DB5B39371EB8284900B3BFA1 /* test.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39171EB825CA00B3BFA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39221EB825CA00B3BFA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB5B39011EB825CA00B3BFA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5B390B1EB825CA00B3BFA1 /* ViewController.swift in Sources */,
+				DB5B0B221EB9AB7200E79470 /* FDExtension.swift in Sources */,
+				DB5B0B241EB9D76400E79470 /* ImagesContentView.swift in Sources */,
+				DB5B39091EB825CA00B3BFA1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39151EB825CA00B3BFA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5B391E1EB825CA00B3BFA1 /* PuzzleGameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5B39201EB825CA00B3BFA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5B39291EB825CA00B3BFA1 /* PuzzleGameUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB5B391B1EB825CA00B3BFA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB5B39041EB825CA00B3BFA1 /* PuzzleGame */;
+			targetProxy = DB5B391A1EB825CA00B3BFA1 /* PBXContainerItemProxy */;
+		};
+		DB5B39261EB825CA00B3BFA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB5B39041EB825CA00B3BFA1 /* PuzzleGame */;
+			targetProxy = DB5B39251EB825CA00B3BFA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB5B39111EB825CA00B3BFA1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB5B39121EB825CA00B3BFA1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB5B392B1EB825CA00B3BFA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DB5B392C1EB825CA00B3BFA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB5B392E1EB825CA00B3BFA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DB5B392F1EB825CA00B3BFA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		DB5B39311EB825CA00B3BFA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PuzzleGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PuzzleGame.app/PuzzleGame";
+			};
+			name = Debug;
+		};
+		DB5B39321EB825CA00B3BFA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PuzzleGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PuzzleGame.app/PuzzleGame";
+			};
+			name = Release;
+		};
+		DB5B39341EB825CA00B3BFA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = PuzzleGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PuzzleGame;
+			};
+			name = Debug;
+		};
+		DB5B39351EB825CA00B3BFA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = PuzzleGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.PuzzleGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PuzzleGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB5B39001EB825CA00B3BFA1 /* Build configuration list for PBXProject "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5B392B1EB825CA00B3BFA1 /* Debug */,
+				DB5B392C1EB825CA00B3BFA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5B392D1EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5B392E1EB825CA00B3BFA1 /* Debug */,
+				DB5B392F1EB825CA00B3BFA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5B39301EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5B39311EB825CA00B3BFA1 /* Debug */,
+				DB5B39321EB825CA00B3BFA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5B39331EB825CA00B3BFA1 /* Build configuration list for PBXNativeTarget "PuzzleGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5B39341EB825CA00B3BFA1 /* Debug */,
+				DB5B39351EB825CA00B3BFA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB5B38FD1EB825CA00B3BFA1 /* Project object */;
+}
