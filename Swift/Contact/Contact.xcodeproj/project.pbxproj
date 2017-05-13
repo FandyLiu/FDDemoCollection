@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31A5843A1EC6E8A2004D65A4 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A584391EC6E8A2004D65A4 /* AuthorizationManager.swift */; };
+		31A5843C1EC6FC63004D65A4 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A5843B1EC6FC63004D65A4 /* AddContactsViewController.swift */; };
+		31A584421EC70661004D65A4 /* timg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 31A584411EC70661004D65A4 /* timg.jpeg */; };
+		31A584441EC71977004D65A4 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A584431EC71977004D65A4 /* Util.swift */; };
 		DB66BE021EC0505D00359D08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB66BE011EC0505D00359D08 /* AppDelegate.swift */; };
 		DB66BE041EC0505D00359D08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB66BE031EC0505D00359D08 /* ViewController.swift */; };
 		DB66BE071EC0505D00359D08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB66BE051EC0505D00359D08 /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31A584391EC6E8A2004D65A4 /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
+		31A5843B1EC6FC63004D65A4 /* AddContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
+		31A584411EC70661004D65A4 /* timg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpeg; sourceTree = "<group>"; };
+		31A584431EC71977004D65A4 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		DB66BDFE1EC0505D00359D08 /* Contact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB66BE011EC0505D00359D08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB66BE031EC0505D00359D08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,13 +107,17 @@
 		DB66BE001EC0505D00359D08 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				31A584411EC70661004D65A4 /* timg.jpeg */,
 				DB66BE011EC0505D00359D08 /* AppDelegate.swift */,
 				DB66BE031EC0505D00359D08 /* ViewController.swift */,
+				31A5843B1EC6FC63004D65A4 /* AddContactsViewController.swift */,
 				DB66BE2F1EC050DE00359D08 /* ContactsManager.swift */,
+				31A584391EC6E8A2004D65A4 /* AuthorizationManager.swift */,
 				DB66BE051EC0505D00359D08 /* Main.storyboard */,
 				DB66BE081EC0505D00359D08 /* Assets.xcassets */,
 				DB66BE0A1EC0505D00359D08 /* LaunchScreen.storyboard */,
 				DB66BE0D1EC0505D00359D08 /* Info.plist */,
+				31A584431EC71977004D65A4 /* Util.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -196,6 +208,7 @@
 				TargetAttributes = {
 					DB66BDFD1EC0505D00359D08 = {
 						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 389K47LAL3;
 						ProvisioningStyle = Automatic;
 					};
 					DB66BE111EC0505E00359D08 = {
@@ -235,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A584421EC70661004D65A4 /* timg.jpeg in Resources */,
 				DB66BE0C1EC0505D00359D08 /* LaunchScreen.storyboard in Resources */,
 				DB66BE091EC0505D00359D08 /* Assets.xcassets in Resources */,
 				DB66BE071EC0505D00359D08 /* Main.storyboard in Resources */,
@@ -263,6 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB66BE041EC0505D00359D08 /* ViewController.swift in Sources */,
+				31A5843A1EC6E8A2004D65A4 /* AuthorizationManager.swift in Sources */,
+				31A5843C1EC6FC63004D65A4 /* AddContactsViewController.swift in Sources */,
+				31A584441EC71977004D65A4 /* Util.swift in Sources */,
 				DB66BE301EC050DE00359D08 /* ContactsManager.swift in Sources */,
 				DB66BE021EC0505D00359D08 /* AppDelegate.swift in Sources */,
 			);
@@ -360,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -404,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -416,7 +433,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 389K47LAL3;
 				INFOPLIST_FILE = Contact/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.Contact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,7 +447,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 389K47LAL3;
 				INFOPLIST_FILE = Contact/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fandy.Contact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -509,6 +530,7 @@
 				DB66BE281EC0505E00359D08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB66BE291EC0505E00359D08 /* Build configuration list for PBXNativeTarget "ContactTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +539,7 @@
 				DB66BE2B1EC0505E00359D08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB66BE2C1EC0505E00359D08 /* Build configuration list for PBXNativeTarget "ContactUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +548,7 @@
 				DB66BE2E1EC0505E00359D08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
