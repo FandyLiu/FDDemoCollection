@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB713F2C1EB1C24F002D50EF /* avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB713F2B1EB1C24F002D50EF /* avatar@2x.png */; };
+		DB6C61201EC947AE005724E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6C611F1EC947AE005724E7 /* main.swift */; };
 		DB7BB0E71EADA244007BEB6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BB0E61EADA244007BEB6A /* AppDelegate.swift */; };
 		DB7BB0E91EADA244007BEB6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7BB0E81EADA244007BEB6A /* ViewController.swift */; };
 		DB7BB0EC1EADA244007BEB6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7BB0EA1EADA244007BEB6A /* Main.storyboard */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DB713F2B1EB1C24F002D50EF /* avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar@2x.png"; sourceTree = "<group>"; };
+		DB6C611F1EC947AE005724E7 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DB7BB0E31EADA244007BEB6A /* iOSCoreAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSCoreAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7BB0E61EADA244007BEB6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB7BB0E81EADA244007BEB6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 		DB7BB0E51EADA244007BEB6A /* iOSCoreAnimationDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DB713F2B1EB1C24F002D50EF /* avatar@2x.png */,
 				DB7BB0E61EADA244007BEB6A /* AppDelegate.swift */,
 				DB7BB0E81EADA244007BEB6A /* ViewController.swift */,
 				DB7BB0EA1EADA244007BEB6A /* Main.storyboard */,
@@ -109,6 +108,7 @@
 				DB7BB0EF1EADA244007BEB6A /* LaunchScreen.storyboard */,
 				DB7BB0F21EADA244007BEB6A /* Info.plist */,
 				DB7BB1141EADA317007BEB6A /* LayerTreeViewController.swift */,
+				DB6C611F1EC947AE005724E7 /* main.swift */,
 			);
 			path = iOSCoreAnimationDemo;
 			sourceTree = "<group>";
@@ -239,7 +239,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB713F2C1EB1C24F002D50EF /* avatar@2x.png in Resources */,
 				DB7BB0F11EADA244007BEB6A /* LaunchScreen.storyboard in Resources */,
 				DB7BB0EE1EADA244007BEB6A /* Assets.xcassets in Resources */,
 				DB7BB0EC1EADA244007BEB6A /* Main.storyboard in Resources */,
@@ -269,6 +268,7 @@
 			files = (
 				DB7BB0E91EADA244007BEB6A /* ViewController.swift in Sources */,
 				DB7BB1151EADA317007BEB6A /* LayerTreeViewController.swift in Sources */,
+				DB6C61201EC947AE005724E7 /* main.swift in Sources */,
 				DB7BB0E71EADA244007BEB6A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
