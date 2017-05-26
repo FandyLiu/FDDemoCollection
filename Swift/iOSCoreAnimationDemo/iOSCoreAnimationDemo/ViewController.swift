@@ -32,15 +32,31 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    @IBAction func draw(_ sender: UIButton) {
-        
-    }
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.frame = CGRect(x: 20, y: 20, width: 150, height: 150)
+        return button
+    }()
+    
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.text = "12345"
+        label.backgroundColor = UIColor.white
+        label.frame = CGRect(x: 20, y: 20, width: 100, height: 100)
+        return label
+    }()
+    /*
+     
+
+     
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.gray
         view.addSubview(imageView)
-
-        
+        let affineTransform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5).rotated(by: CGFloat.pi / 6).translatedBy(x: 200, y: 0)
+        imageView.layer.setAffineTransform(affineTransform)
     }
     
 

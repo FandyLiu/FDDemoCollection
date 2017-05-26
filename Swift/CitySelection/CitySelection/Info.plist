@@ -34,7 +34,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewGroupOpacity</key>
-	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>使用定位时候</string>
 </dict>
 </plist>
