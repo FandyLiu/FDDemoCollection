@@ -32,6 +32,13 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    lazy var imageView2: UIImageView = {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 200, y: 50, width: 100, height: 100)
+        imageView.image = UIImage(named: "avatar")
+        return imageView
+    }()
+    
     lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.white
@@ -55,8 +62,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.gray
         view.addSubview(imageView)
-        let affineTransform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5).rotated(by: CGFloat.pi / 6).translatedBy(x: 200, y: 0)
-        imageView.layer.setAffineTransform(affineTransform)
+//        view.addSubview(imageView2)
+
+        
+        
+        
     }
     
 

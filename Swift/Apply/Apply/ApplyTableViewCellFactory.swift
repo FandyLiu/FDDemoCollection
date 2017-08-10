@@ -23,7 +23,6 @@ class ApplyTableViewCellFactory {
     }
     
     class func dequeueReusableCell(withTableView tableView: UITableView, indexPath: IndexPath, cellItems: [ApplyTableViewCellType], cellContentDict: [IndexPath]) -> ApplyTableViewCell? {
-        
         switch cellItems[indexPath.row] {
         case let .common(type):
             let cell = dequeueReusableCell(withTableView: tableView, cellClass: CommonTableViewCell.self)
@@ -59,7 +58,7 @@ class ApplyTableViewCellFactory {
     
     
     fileprivate class func register<T: ApplyTableViewCell>(_ tableView: UITableView, cellClass: T.Type) where T: ApplyTableViewCellProtocol {
-        tableView.register(cellClass.self, forCellReuseIdentifier: cellClass.indentifier)
+        tableView.register(cellClass, forCellReuseIdentifier: cellClass.indentifier)
     }
     
     fileprivate class func dequeueReusableCell<Cell: ApplyTableViewCell>(withTableView tableView: UITableView,  cellClass: Cell.Type) -> Cell? where Cell: ApplyTableViewCellProtocol {
